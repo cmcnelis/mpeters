@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vin: MyString
+  start_date: 2013-08-14
+  expr_date: 2013-08-14
+  make: MyString
+  model: MyString
+  color: MyString
+  deductable: 1
+
+two:
+  vin: MyString
+  start_date: 2013-08-14
+  expr_date: 2013-08-14
+  make: MyString
+  model: MyString
+  color: MyString
+  deductable: 1
