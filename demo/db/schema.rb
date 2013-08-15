@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815195430) do
+ActiveRecord::Schema.define(version: 20130815212435) do
 
   create_table "agents", force: true do |t|
     t.string   "email"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20130815195430) do
     t.string   "make"
     t.string   "model"
     t.string   "color"
-    t.integer  "deductable"
+    t.integer  "deductible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
