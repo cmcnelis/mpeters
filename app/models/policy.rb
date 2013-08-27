@@ -8,5 +8,5 @@ class Policy < ActiveRecord::Base
     validates :number, :presence=>true, :uniqueness=>true
 
     belongs_to :agent
-    has_many :vehicles, dependent: :destory
+    has_many :vehicles, dependent: :destroy
 end
