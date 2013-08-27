@@ -6,4 +6,8 @@ class Vehicle < ActiveRecord::Base
     validates :model, :presence=>true
     validates :color, :presence=>true
     validates :deductible, :presence=>true
+
+    belongs_to :policy
+    has_many :drivers, dependent: :destroy
+
 end
