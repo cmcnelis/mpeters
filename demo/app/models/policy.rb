@@ -6,4 +6,7 @@ class Policy < ActiveRecord::Base
     validates :state, :presence=>true
     validates :zip_code, :presence=>true
     validates :number, :presence=>true, :uniqueness=>true
+
+    belongs_to :agent
+    has_many :vehicles, dependent: :destory
 end
