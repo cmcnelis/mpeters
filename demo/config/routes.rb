@@ -1,9 +1,20 @@
 Demo::Application.routes.draw do
+
+resource :agent_session
+post 'login' => 'agent_sessions#create'
+get 'login' => 'agent_sessions#new'
+post 'logout' => 'agent_sessions#destroy'
+
+resource :agents
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'login#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -39,7 +50,7 @@ Demo::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
