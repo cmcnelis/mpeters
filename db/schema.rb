@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815212435) do
+ActiveRecord::Schema.define(version: 20130829005141) do
+
+  create_table "agent_sessions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "agents", force: true do |t|
     t.string   "email"
@@ -20,6 +25,9 @@ ActiveRecord::Schema.define(version: 20130815212435) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
   end
 
   create_table "drivers", force: true do |t|
