@@ -7,8 +7,21 @@
 </div>
 
 <div class="row">
-    <div class="span4"><strong>Company</strong> <%= @agent.company %></div>
-    <div class="span8"><strong>Email</strong> <%= @agent.email %></div>
+    <div class="span4">
+        <strong>Company </strong>
+        <%= @agent.company %>
+    </div>
+    <div class="span4">
+        <strong>Email </strong>
+        <%= @agent.email %>
+    </div>
+</div>
+
+</br>
+<div class="row">
+    <div class="span4">
+        <%= link_to "Edit", edit_account_path, :class=>"btn" %>
+    </div>
 </div>
 
 <div class="row">
@@ -18,5 +31,7 @@
 </div>
 
 <div class="row">
-    <%= render :partial=>"policies/policies", :object=>@agent %>
+    <div class="span12">
+        <%= render :partial=>"policies/policies", :object=>@agent %>
+    </div>
 </div>

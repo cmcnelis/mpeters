@@ -1,4 +1,6 @@
 <% content_for :title, "New User" %>
 <h1>New  User</h1>
 
-<%= render :partial => 'form' %>
+<%= form_for @agent , :url=>account_path do |f| %>
+    <%= render :partial => 'form' %>
+<% end %>

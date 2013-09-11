@@ -1,26 +1,26 @@
-<%= form_for @agent , :url=>account_path do |f| %>
-    <% if @agent.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-        <ul>
+<% if @agent.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+    <ul>
         <% @agent.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <li><%= msg %></li>
         <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-    <%= f.label :company %>
-    <%= f.text_field :company %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.label  'Confirm Password'%>
-    <%= f.password_field :password_confirmation %></br>
-    <%= f.submit "Submit" %>
+    </ul>
+</div>
 <% end %>
+
+<%= form.label :first_name %>
+<%= form.text_field :first_name %>
+<%= form.label :last_name %>
+<%= form.text_field :last_name %>
+<%= form.label :company %>
+<%= form.text_field :company %>
+<%= form.label :email %>
+<%= form.text_field :email %>
+<%= form.label :password %>
+<%= form.password_field :password %>
+<%= form.label  'Confirm Password'%>
+<%= form.password_field :password_confirmation %></br>
+<%= form.submit "Submit" %>

@@ -18,16 +18,17 @@ class AgentsController < ApplicationController
     end
 
     def edit
-        @user = current_user
+        @agent = current_user
     end
 
     def update
+        logger.debug("AgentsController::update")
         @agent = current_user
-        if @agent.update_attributes(agent_params)
+        if @agent.update(agent_params)
             flash[:notice]= "Sucessfully updated profile."
-            redirect_to 'show'
-        else
             redirect_to account_url
+        else
+            render :action=> 'edit'
         end
     end
 
