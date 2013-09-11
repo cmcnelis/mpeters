@@ -1,0 +1,26 @@
+<%= form_for @vehicle , :url=>account_policy_vehicles_path do |f| %>
+    <% if @vehicle.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+        <% @vehicle.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.label :vin %>
+    <%= f.text_field :vin %>
+    <%= f.label :make%>
+    <%= f.text_field :make %>
+    <%= f.label :model%>
+    <%= f.text_field :model %>
+    <%= f.label :color %>
+    <%= f.text_field :color %>
+    <%= f.label :deductible %>
+    <%= f.text_field :deductible %>
+    <%= f.label :previous_deductible %>
+    <%= f.text_field :previous_deductible %></br>
+    <%= f.submit "Submit" %>
+<% end %>

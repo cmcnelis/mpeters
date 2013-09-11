@@ -1,14 +1,17 @@
 Demo::Application.routes.draw do
 
-resource :agent_session
-post 'login' => 'agent_sessions#create'
-get 'login' => 'agent_sessions#new'
-post 'logout' => 'agent_sessions#destroy'
+  post 'login' => 'agent_sessions#create'
+  get 'login' => 'agent_sessions#new'
+  post 'logout' => 'agent_sessions#destroy'
+  get 'logout' => 'agent_sessions#destroy'
 
-resource :agents
+  resource :agent_sessions
 
-
-
+  resource :account , :controller=>"agents" do
+    resources :policies do
+      resources :vehicles
+      end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

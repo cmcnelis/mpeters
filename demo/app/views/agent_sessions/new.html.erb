@@ -1,4 +1,4 @@
-<%= form_for @agent_session,  url: agent_session_path do |f| %>
+<%= form_for @agent_session  do |f| %>
   <% if @agent_session.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@agent_session.errors.count, "error") %> prohibited:</h2>
