@@ -1,5 +1,7 @@
 class VehiclesController < ApplicationController
 
+    before_filter :require_user
+
     LOGGER_TAG ="VehiclesController::"
 
     def new
