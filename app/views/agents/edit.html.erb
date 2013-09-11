@@ -1,5 +1,7 @@
 <% content_for :title, "Edit Profile" %>
 <h1>Edit Profile</h1>
 
-<% render :partial => 'form' %>
+<%= form_for @agent , :url=>account_path do |f| %>
+    <% render :partial => 'form', :object=>f  %>
+<% end %>
 
