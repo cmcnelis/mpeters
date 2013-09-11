@@ -1,5 +1,9 @@
 <% content_for :title, "Edit Policy" %>
 <h1>Edit Policy</h1>
 
+<%= form_for @policy, :url=>account_policy_path do |f| %>
+    <% render :partial=>'form', :object=>f %>
+<% end %>
+
 
 
