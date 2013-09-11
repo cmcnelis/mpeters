@@ -1,0 +1,38 @@
+<% content_for :title=>"Policy" %>
+
+<div class="row">
+    <div class="page-header">
+        <h1><%= "Policy -  #{@policy.number}" %></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6">
+        <strong>Holder </strong>
+        <%= "#{@policy.first_name} #{@policy.last_name}" %>
+    </div>
+    <div class="span6">
+        <strong>Email </strong>
+        <%= @policy.email %>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <strong>Address </strong>
+        <%= "#{@policy.address}, #{@policy.city}, #{@policy.state}, #{@policy.zip_code}" %>
+    </div>
+</div>
+
+</br>
+<div class="row">
+    <div class="page-header">
+        <h1>Vehicles</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
+    </div>
+</div>
+

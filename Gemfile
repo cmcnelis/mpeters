@@ -46,7 +46,7 @@ gem 'bootstrap-sass'
 gem 'simple_form', '>= 3.0.0.rc'
 
 #Authlogic
-gem 'authlogic'
+gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
