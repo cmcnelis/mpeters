@@ -1,4 +1,6 @@
-<% content_for :title 'Edit Vehicle' %>
+<% content_for :title, 'Edit Vehicle' %>
 <h1>Edit Vehicle</h1>
 
-<%= render :partiial=>'form' %>
+<%= form_for @vehicle , :url=>account_policy_vehicle_path do |f| %>
+    <%= render :partial=>'form' , :object=>f %>
+<% end %>

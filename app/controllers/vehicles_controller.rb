@@ -1,4 +1,7 @@
 class VehiclesController < ApplicationController
+
+    LOGGER_TAG ="VehiclesController::"
+
     def new
         @vehicle = Vehicle.new
     end
@@ -26,6 +29,14 @@ class VehiclesController < ApplicationController
     end
 
     def update
+        logger.debug("#{LOGGER_TAG} update")
+        @vehicle = Vehicle.find(params[:id])
+        if @vehicle.update(vehicle_params)
+            flash[:notice] = "Sucessfully updated vehicle information."
+            render :action => 'show'
+        else
+            render :action => 'edit'
+        end
     end
 
     private
