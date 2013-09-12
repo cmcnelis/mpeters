@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Insurance Demo" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Bootstrap" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <header class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Insurance Demo" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Bootstrap" %>">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-      <div class="container">
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/messages' %>
+    <%= yield %>
 
+<hr>
+<div class="container">
+    <footer>
+      <p>&copy; Company Name 2013</p>
+    </footer>
+</div>
 
-              <%= render 'layouts/messages' %>
-              <%= yield %>
+</body>
 
-
-          <footer>
-          </footer>
-
-      </div>
-
-  </body>
 </html>
