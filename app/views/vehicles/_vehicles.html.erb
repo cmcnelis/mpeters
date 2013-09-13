@@ -1,3 +1,5 @@
+
+<div class="row">
 <%if @policy.vehicles.count > 0 %>
 <table class="table">
     <tr>
@@ -20,12 +22,15 @@
 <% else %>
 <p>The policy does not have any vehicles covered at this time.</p>
 <% end %>
+</div>
 
 </br>
 </br>
 
 <div class="row">
   <div class="span4">
-   <%= link_to "Add Vehicle", new_account_policy_vehicle_path(@policy.id), :class=>"btn" %>
+   <%= link_to "Add Vehicle",
+    new_account_policy_vehicle_path(@policy.id),
+   :class=>"btn btn-primary" %>
     </div>
 </div>

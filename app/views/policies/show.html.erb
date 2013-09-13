@@ -1,11 +1,12 @@
 <% content_for :title=>"Policy" %>
 
-<div class="row">
+<div class="container">
     <div class="page-header">
         <h1><%= "Policy -  #{@policy.number}" %></h1>
     </div>
 </div>
 
+<div class="container">
 <div class="row">
     <div class="span6">
         <strong>Holder </strong>
@@ -27,20 +28,17 @@
 
 <div class="row">
     <div class="span4">
-        <%= link_to "Edit", edit_account_policy_path, :class=>"btn" %>
+        <%= link_to "Edit", edit_account_policy_path, :class=>"btn btn-primary" %>
     </div>
+</div>
 </div>
 
 </br>
-<div class="row">
+<div class="container">
     <div class="page-header">
         <h1>Vehicles</h1>
     </div>
+        <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
 </div>
 
-<div class="row">
-    <div class="span12">
-        <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
-    </div>
-</div>
 

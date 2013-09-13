@@ -1,21 +1,28 @@
 <% content_for :title=>"Vehicle" %>
 
-<div class="row">
+<div class="container">
     <div class="page-header">
-        <h1>Vehicle - <small><%= @vehicle.vin %></small></h1>
+        <h1>Vehicle</h1>
     </div>
 </div>
 
+<div class="container">
 <% if !@vehicle.covered %>
     <div class="row">
-        <div class="span12 alert">
+        <div class="span12 alert alert-warning">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Warning!</strong> Vehicle deductible isn't currently covered.
         </div>
     </div>
 <% end %>
+</div>
 
+<div class="container">
 <div class="row">
+    <div class="span4">
+        <strong>VIN </strong>
+        <%= @vehicle.vin %>
+    </div>
     <div class="span4">
         <strong>Make </strong>
         <%= @vehicle.make %>
@@ -63,8 +70,9 @@
 </br>
 <div class="row">
     <div class="span12">
-        <%= link_to "Edit", edit_account_policy_vehicle_path(@vehicle.policy_id, @vehicle.id) , :class=>"btn" %>
+        <%= link_to "Edit", edit_account_policy_vehicle_path(@vehicle.policy_id, @vehicle.id) , :class=>"btn btn-primary" %>
     </div>
+</div>
 </div>
 
 
