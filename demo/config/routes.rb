@@ -1,5 +1,7 @@
 Demo::Application.routes.draw do
 
+  get "about" => "static_pages#about"
+  get "contact" => "static_pages#contact"
   post 'login' => 'agent_sessions#create'
   get 'login' => 'agent_sessions#new'
   post 'logout' => 'agent_sessions#destroy'

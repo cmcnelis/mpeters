@@ -1,4 +1,5 @@
 
+<div class="row">
 <%if @agent.policies %>
 <table class="table">
     <tr>
@@ -21,9 +22,6 @@
 </br>
 </br>
 
-<div class="row">
-  <div class="span4">
-   <%= link_to "Add Policy", new_account_policy_path, :class=>"btn" %></div>
+    <%= link_to "Add Policy", new_account_policy_path, :class=>"btn btn-primary" %>
 </div>
-
 

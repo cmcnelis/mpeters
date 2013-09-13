@@ -1,5 +1,9 @@
 <% content_for :title, "Edit Policy" %>
-<h1>Edit Policy</h1>
+<div class="container">
+    <div class="page-header">
+        <h1>Edit Policy</h1>
+    </div>
+</div>
 
 <%= form_for @policy, :url=>account_policy_path do |f| %>
     <% render :partial=>'form', :object=>f %>

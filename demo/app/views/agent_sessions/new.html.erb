@@ -1,3 +1,9 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Login In</h1>
+  </div>
+</div>
+<div class="container">
 <%= form_for @agent_session  do |f| %>
   <% if @agent_session.errors.any? %>
   <div id="error_explanation">
@@ -17,3 +23,4 @@
   <br />
   <%= f.submit "Login" %>
 <% end %>
+</div>
