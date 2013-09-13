@@ -16,11 +16,11 @@
   </div>
   <% end %>
   <%= f.label :email%><br />
-  <%= f.text_field :email %><br />
+  <%= f.text_field :email , :size=>25%><br />
   <br />
   <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
+  <%= f.password_field :password, :size=> 25 %><br />
   <br />
-  <%= f.submit "Login" %>
+  <%= f.submit "Login" , :class=>"btn btn-primary"%>
 <% end %>
 </div>
