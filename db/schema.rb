@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910232512) do
+ActiveRecord::Schema.define(version: 20130914104516) do
 
   create_table "agent_sessions", force: true do |t|
     t.datetime "created_at"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20130910232512) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "covered",             default: false
+    t.string   "drivers"
   end
 
 end
