@@ -5,3 +5,52 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+vehicles = Vechicle.create([
+    {
+        :vin=>'A1234567890123456',
+        :make=>'Chevy',
+        :model=>'Tahoe',
+        :color=>"Black",
+        :deductible=>"500",
+        :previous_deductible=>"500",
+        :drivers=>'John Doe, Jane Doe'},
+
+    {
+        :vin=>"B1234567890123456",
+        :make=>"Subaru",
+        :model=>"Wrx",
+        :color=>'Blue',
+        :deductible=>'500',
+        :previous_deductible=>'500',
+        :drivers=>'John Doe, Jane Doe'
+
+    }
+]) #end vehicle.create
+
+policies = Policy.create([
+    {
+        :number=>'123456789-1',
+        :first_name=>'John',
+        :last_name=>'Doe',
+        :address=>'123 Street',
+        :city=>'Austin',
+        :state=>'TX',
+        :zip_cide=>'12345',
+        :email=>'johndoe@email.com'
+    }
+])
+
+agent = Agent.create([
+    {
+        :first_name=>'Bill',
+        :last_name=>'Smith',
+        :company=>'Farmers',
+        :email=>'bsmith@email.com',
+        :password=>'password'
+
+    }
+])
+
+policies.first.vehicles=(vechiles.all)
+agent.policies=(policies.first)
