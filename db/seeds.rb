@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-vehicles = Vechicle.create([
+vehicles = Vehicle.create([
     {
         :vin=>'A1234567890123456',
         :make=>'Chevy',
@@ -36,21 +36,22 @@ policies = Policy.create([
         :address=>'123 Street',
         :city=>'Austin',
         :state=>'TX',
-        :zip_cide=>'12345',
+        :zip_code=>'12345',
         :email=>'johndoe@email.com'
     }
 ])
 
-agent = Agent.create([
-    {
+agent = Agent.create(
         :first_name=>'Bill',
         :last_name=>'Smith',
         :company=>'Farmers',
         :email=>'bsmith@email.com',
-        :password=>'password'
+        :password=>'password',
+        :password_confirmation=>'password'
+        )
 
-    }
-])
+vehicles.each do |v|
+    policies.first.vehicles<<v
+end
 
-policies.first.vehicles=(vechiles.all)
-agent.policies=(policies.first)
+agent.policies<<policies.first
