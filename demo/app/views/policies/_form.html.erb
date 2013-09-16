@@ -1,0 +1,35 @@
+<div class="container">
+    <div clas="row">
+<% if @policy.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@policy.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <ul>
+        <% @policy.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+<% end %>
+</div>
+
+<%= form.label :number,  'Policy number' %></br>
+<%= form.text_field :number %></br>
+<%= form.label :first_name %></br>
+<%= form.text_field :first_name %></br>
+<%= form.label :last_name %></br>
+<%= form.text_field :last_name %></br>
+<%= form.label :email %></br>
+<%= form.text_field :email %></br>
+<%= form.label :address %></br>
+<%= form.text_field :address %></br>
+<%= form.label :city %></br>
+<%= form.text_field :city %></br>
+<%= form.label :state %></br>
+<%= form.text_field :state %></br>
+<%= form.label :zip_code %></br>
+<%= form.text_field :zip_code %></br>
+</br>
+<%= form.submit "Submit" , :class=>"btn btn-primary"%>
+
+</div>
+

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <% if @agent.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+                <ul>
+                    <% @agent.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
+        </div>
+    </div>
+
+
+        <%= form.label :first_name %></br>
+        <%= form.text_field :first_name %></br>
+        <%= form.label :last_name %></br>
+        <%= form.text_field :last_name %></br>
+        <%= form.label :company %></br>
+        <%= form.text_field :company %></br>
+        <%= form.label :email %></br>
+        <%= form.text_field :email %></br>
+        <%= form.label :password %></br>
+        <%= form.password_field :password %></br>
+        <%= form.label  'Confirm Password'%></br>
+        <%= form.password_field :password_confirmation %>
+    </br>
+    </br>
+        <%= form.submit "Submit", :class=>"btn btn-primary" %>
+</div>
+
+
