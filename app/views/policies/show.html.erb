@@ -36,7 +36,9 @@
 </br>
 <div class="container">
     <div class="page-header">
-        <h1>Vehicles</h1>
+        <h1>Vehicles <%= link_to "Add Vehicle",
+    new_account_policy_vehicle_path(@policy.id),
+   :class=>"btn btn-primary" %></h1>
     </div>
         <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
 </div>
