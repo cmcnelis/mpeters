@@ -13,7 +13,7 @@ class Policy < ActiveRecord::Base
         |attributes| attributes['vin'].blank? or
         attributes['make'].blank? or
         attributes['model'].blank? or
-        attributes['year'].blank? or
+        attributes['color'].blank? or
         attributes['deductible'].blank?
     }
 end

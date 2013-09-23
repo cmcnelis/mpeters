@@ -57,7 +57,8 @@ class VehiclesController < ApplicationController
                 :model,
                 :color,
                 :deductible,
-                :previous_deductible)
+                :previous_deductible,
+                :drivers)
         end
 
 end
