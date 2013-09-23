@@ -8,7 +8,6 @@ class Agent < ActiveRecord::Base
     validates :company, :presence=>true
 
     has_many :policies,  dependent: :destroy
-    accepts_nested_attributes_for :policies
 
     def name
         [first_name, last_name].join " "

@@ -9,5 +9,11 @@ class Policy < ActiveRecord::Base
 
     belongs_to :agent
     has_many :vehicles, dependent: :destroy
-    accepts_nested_attributes_for :vehicles
+    accepts_nested_attributes_for :vehicles, reject_if: lambda {
+        |attributes| attributes['vin'].blank? or
+        attributes['make'].blank? or
+        attributes['model'].blank? or
+        attributes['year'].blank? or
+        attributes['deductible'].blank?
+    }
 end

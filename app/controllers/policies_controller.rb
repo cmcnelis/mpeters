@@ -36,6 +36,14 @@ class PoliciesController < ApplicationController
         end
     end
 
+    def destroy
+        @policy = Policy.find(params[:id])
+        if(@policy.destroy)
+            flash[:notice] = "Successfully removed policy."
+        end
+        redirect_to account_url
+    end
+
     private
         def policy_params
             params.require(:policy).permit!

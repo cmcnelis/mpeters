@@ -2,7 +2,10 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>Vehicle</h1>
+        <h1>Vehicle
+        <%= link_to "Edit", edit_account_policy_vehicle_path(@vehicle.policy_id, @vehicle.id) , :class=>"btn btn-link" %>
+        <%= link_to "Policy", :back, :class=>"btn btn-link"%>
+    </h1>
     </div>
 </div>
 
@@ -68,8 +71,7 @@
 </br>
 <div class="row">
     <div class="span12">
-        <%= link_to "Edit", edit_account_policy_vehicle_path(@vehicle.policy_id, @vehicle.id) , :class=>"btn btn-primary" %>
-        <%= link_to "Cancel", :back, :class=>"btn btn-primary"%>
+
     </div>
 </div>
 </div>

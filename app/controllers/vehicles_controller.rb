@@ -41,6 +41,15 @@ class VehiclesController < ApplicationController
         end
     end
 
+    def destroy
+        @vehicle = Vehicle.find[params[:id]]
+        if @vehicle.destroy
+            flash[:notice] = "Successfully removed vehicle."
+        end
+
+        redirect_to account_policy_path(params[:policy_id])
+    end
+
     private
         def vehicle_params
             params.require(:vehicle).permit(:vin,
