@@ -4,6 +4,7 @@ class PoliciesController < ApplicationController
 
     def new
         @policy = Policy.new
+        2.times {@policy.vehicles.build }
     end
 
     def create

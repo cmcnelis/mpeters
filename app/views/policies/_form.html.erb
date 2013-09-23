@@ -29,6 +29,26 @@
 <%= form.label :zip_code %></br>
 <%= form.text_field :zip_code %></br>
 </br>
+Vehicles:
+<ul>
+    <%= form.fields_for :vehicles do |vehicles_form| %>
+    <li>
+        <%= vehicles_form.label :vin %>
+        <%= vehicles_form.text_field :vin %></br>
+        <%= vehicles_form.label :make %>
+        <%= vehicles_form.text_field :make %> </br>
+        <%= vehicles_form.label :model %>
+        <%= vehicles_form.text_field :model %></br>
+        <%= vehicles_form.label :color %>
+        <%= vehicles_form.text_field :color %></br>
+        <%= vehicles_form.label :previous_deductible %>
+        <%= vehicles_form.text_field :previous_deductible %></br>
+        <%= vehicles_form.label :deductible %>
+        <%= vehicles_form.text_field :deductible %></br>
+    </li>
+    <% end %>
+</ul>
+
 <%= form.submit "Submit" , :class=>"btn btn-primary"%>
 <%= link_to "Cancel", :back,  :class=>"btn btn-primary", :confirm=>"Are you sure?" %>
 </div>

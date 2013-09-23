@@ -9,4 +9,5 @@ class Policy < ActiveRecord::Base
 
     belongs_to :agent
     has_many :vehicles, dependent: :destroy
+    accepts_nested_attributes_for :vehicles
 end
