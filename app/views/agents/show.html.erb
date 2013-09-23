@@ -3,7 +3,8 @@
 <div class="container">
 <div class="row">
     <div class="page-header">
-        <h1><%= "#{@agent.first_name}  #{@agent.last_name}" %></h1>
+        <h1><%= "#{@agent.first_name}  #{@agent.last_name}" %>
+            <%= link_to "Edit", edit_account_path, :class=>"btn btn-link" %></h1>
     </div>
 </div>
 
@@ -18,17 +19,10 @@
     </div>
 </div>
 
-</br>
-<div class="row">
-    <div class="span4">
-        <%= link_to "Edit", edit_account_path, :class=>"btn btn-primary" %>
-    </div>
-</div>
-
 <div class="row">
     <div class="page-header">
         <h1>Policies
-         <%= link_to "Add Policy", new_account_policy_path, :class=>"btn btn-primary" %>
+         <%= link_to "Add Policy", new_account_policy_path, :class=>"btn btn-link" %>
      </h1>
     </div>
 </div>

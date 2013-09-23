@@ -2,7 +2,8 @@
 
 <div class="container">
     <div class="page-header">
-        <h1><%= "Policy -  #{@policy.number}" %></h1>
+        <h1><%= "Policy -  #{@policy.number}" %>
+        <%= link_to "Edit", edit_account_policy_path, :class=>"btn btn-link" %></h1>
     </div>
 </div>
 
@@ -23,14 +24,6 @@
         <%= "#{@policy.address}, #{@policy.city}, #{@policy.state}, #{@policy.zip_code}" %>
     </div>
 </div>
-</br>
-</br>
-
-<div class="row">
-    <div class="span4">
-        <%= link_to "Edit", edit_account_policy_path, :class=>"btn btn-primary" %>
-    </div>
-</div>
 </div>
 
 </br>
@@ -38,7 +31,7 @@
     <div class="page-header">
         <h1>Vehicles <%= link_to "Add Vehicle",
     new_account_policy_vehicle_path(@policy.id),
-   :class=>"btn btn-primary" %></h1>
+   :class=>"btn btn-link" %></h1>
     </div>
         <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
 </div>
