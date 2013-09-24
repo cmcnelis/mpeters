@@ -1,17 +1,17 @@
 <div class="container">
     <div class="row">
-    <% if @vehicle.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <% if @vehicle.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-        <ul>
-        <% @vehicle.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+            <ul>
+                <% @vehicle.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
         <% end %>
-        </ul>
-      </div>
-    <% end %>
-</div>
+    </div>
 
     <%= form.label :vin %></br>
     <%= form.text_field :vin %></br>

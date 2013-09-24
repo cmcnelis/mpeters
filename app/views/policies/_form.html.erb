@@ -29,8 +29,15 @@
 <%= form.label :zip_code %></br>
 <%= form.text_field :zip_code %></br>
 </br>
-Vehicles:
-<ul>
+Vehicles -
+<div id="vehicles" class="col-lg-12">
+    Put existing vehicles here....
+</div>
+<%= add_object_link("Add Vehicle", form, Vehicle.new, "vehicles/vehicles_mini", "#vehicles" ) %></br>
+
+<%
+=begin%>
+ <ul>
     <%= form.fields_for :vehicles do |vehicles_form| %>
     <li>
         <%= vehicles_form.label :vin %>
@@ -48,6 +55,8 @@ Vehicles:
     </li>
     <% end %>
 </ul>
+<%
+=end%>
 
 <%= form.submit "Submit" , :class=>"btn btn-primary"%>
 <%= link_to "Cancel", :back,  :class=>"btn btn-primary", :confirm=>"Are you sure?" %>

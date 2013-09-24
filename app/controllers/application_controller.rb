@@ -1,49 +1,58 @@
 class ApplicationController < ActionController::Base
 
-    helper :all
+  helper :all
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-    helper_method :current_user
+  helper_method :current_user, :add_object_link
 
-    private
+  private
 
-def require_user
-      unless current_user
-        store_location
-        flash[:notice] = "You must be logged in to access this page"
-        redirect_to new_agent_sessions_url
-        return false
-      end
+  def require_user
+    unless current_user
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to new_agent_sessions_url
+      return false
     end
+  end
 
-    def require_no_user
-      if current_user
-        store_location
-        flash[:notice] = "You must be logged out to access this page"
-        redirect_to root_path
-        return false
-      end
+  def require_no_user
+    if current_user
+      store_location
+      flash[:notice] = "You must be logged out to access this page"
+      redirect_to root_path
+      return false
     end
+  end
 
-    def store_location
-      session[:return_to] = request.original_url
-    end
+  def store_location
+    session[:return_to] = request.original_url
+  end
 
-def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
-      session[:return_to] = nil
-    end
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
 
-def current_user_session
-  return @current_user_session if defined?(@current_user_session)
-  @current_user_session = AgentSession.find
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = AgentSession.find
+  end
+
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.record
+  end
+
+  def js(data)
+  if data.respond_to? :to_json
+    data.to_json
+  else
+    data.inspect.to_json
+  end
 end
 
-def current_user
-  return @current_user if defined?(@current_user)
-  @current_user = current_user_session && current_user_session.record
-end
 end

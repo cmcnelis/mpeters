@@ -1,0 +1,16 @@
+<%= form.fields_for :vehicles do |vehicles_form| %>
+    <%= vehicles_form.label :vin %></br>
+    <%= vehicles_form.text_field :vin %></br>
+    <%= vehicles_form.label :drivers %></br>
+    <%= vehicles_form.text_field :drivers, :placeholder=>"John Doe, Jane Doe" , :size=> 35%></br>
+    <%= vehicles_form.label :make%></br>
+    <%= vehicles_form.text_field :make %></br>
+    <%= vehicles_form.label :model%></br>
+    <%= vehicles_form.text_field :model %></br>
+    <%= vehicles_form.label :color %></br>
+    <%= vehicles_form.text_field :color %></br>
+    <%= vehicles_form.label :deductible %></br>
+    <%= vehicles_form.text_field :deductible %></br>
+    <%= vehicles_form.label :previous_deductible %></br>
+    <%= vehicles_form.text_field :previous_deductible %></br></br>
+<% end %>
