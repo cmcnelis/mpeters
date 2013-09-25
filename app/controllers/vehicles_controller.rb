@@ -16,7 +16,7 @@ class VehiclesController < ApplicationController
 
         if @vehicle.save
             flash[:notice] = "Successfully added a new vechicle."
-            redirect_to account_url
+            redirect_to account_policy_path(params[:policy_id])
         else
             render :action=> 'new'
         end
