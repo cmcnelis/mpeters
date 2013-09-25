@@ -5,5 +5,7 @@ class Vehicle < ActiveRecord::Base
     validates :color, :presence=>true
 
     belongs_to :policy
+    has_many :transactions, :dependent=>:destroy
 
+    accepts_nested_attributes_for :transactions
 end

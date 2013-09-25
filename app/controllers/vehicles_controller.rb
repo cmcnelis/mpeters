@@ -1,6 +1,6 @@
 class VehiclesController < ApplicationController
 
-    before_filter :require_user
+    before_filter :require_user, :except=>[:pay, :transaction]
 
     LOGGER_TAG ="VehiclesController::"
 
@@ -48,6 +48,16 @@ class VehiclesController < ApplicationController
         end
 
         redirect_to account_policy_path(params[:policy_id])
+    end
+
+    def pay
+        @vehicle = Vehicle.find(params[:id])
+        1.times {@vehicle.transactions.build}
+    end
+
+    def transaction
+        logger.debug('Yup we are paying now!!!')
+        redirect_to root_path
     end
 
     private

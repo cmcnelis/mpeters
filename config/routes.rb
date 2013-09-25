@@ -7,6 +7,9 @@ Demo::Application.routes.draw do
   post 'logout' => 'agent_sessions#destroy'
   get 'logout' => 'agent_sessions#destroy'
 
+  get 'account/policies/:policy_id/vehicles/:id/pay' => 'vehicles#pay', :as=>'pay'
+  patch 'account/policies/:policy_id/vehicles/:id/pay' => 'vehicles#transaction'
+
   resource :agent_sessions
 
   resource :account , :controller=>"agents" do

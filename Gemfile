@@ -16,6 +16,9 @@ group :production do
     gem 'rails_12factor'
 end
 
+# Pay-Pal payment gem
+gem 'paypal-sdk-rest'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 

@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>Coverage Paymet</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <%= render :partial=>'vehicle_view', :locals=>{:v=>@vehicle} %>
+        </div>
+
+        <div class="col-md-6">
+            <div>Billing Address</div>
+            <%= form_for @vehicle , :url=>pay_path do |f| %>
+            <%= f.fields_for :transactions do |t| %>
+        <p>
+            <%= t.label :first_name %>
+            <%= t.text_field :firstname, :value=>@vehicle.policy.first_name %>
+        </p>
+        <p>
+            <%= t.label :last_name %>
+            <%= t.text_field :last_name, :value=>@vehicle.policy.last_name %>
+        </p>
+        <p>
+            <%= t.label :address %>
+            <%= t.text_field :address, :value=>@vehicle.policy.address %>
+        </p>
+        <p>
+            <%= t.label :city %>
+            <%= t.text_field :city, :value=>@vehicle.policy.city %>
+        </p>
+        <p>
+            <%= t.label :zip_code %>
+            <%= t.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
+        </p>
+            <div>Card Information</div>
+            <p>
+            <%= t.label :card_number %>
+            <%= t.text_field :card_number %>
+        </p>
+        <p>
+            <%= t.label :card_type %>
+            <%= t.text_field :card_type %>
+        </p>
+            <%= t.label :exp, "Expiration" %>
+            <%= t.text_field :exp , :placeholder=>"mm/yy"%>
+        <p>
+            <%= t.label :csc %>
+            <%= t.text_field :csc %>
+        </p>
+            <% end %>
+            <%= f.submit 'Submit', :class=>'btn btn-primary' %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
