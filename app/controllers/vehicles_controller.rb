@@ -42,7 +42,7 @@ class VehiclesController < ApplicationController
     end
 
     def destroy
-        @vehicle = Vehicle.find[params[:id]]
+        @vehicle = Vehicle.find(params[:id])
         if @vehicle.destroy
             flash[:notice] = "Successfully removed vehicle."
         end

@@ -8,6 +8,7 @@
         <th>Model</th>
         <th>Deductible</th>
         <th>Coverage</th>
+        <th> </th>
     </tr>
     <% @policy.vehicles.each do |v| %>
     <tr>
@@ -16,6 +17,8 @@
         <td><%= v.model %></td>
         <td><%= v.deductible %></td>
         <td> Pending </td>
+        <td><%= link_to 'Remove', account_policy_vehicle_path(v.policy_id, v.id),
+        :class=>"btn btn-link", :method=> :delete , :confirm=>"Are you sure you want to remove this policy?" %></td>
     </tr>
     <% end %>
 </table>

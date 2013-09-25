@@ -6,12 +6,15 @@
         <th>Policy</th>
         <th>Holder</th>
         <th>Vehicles</th>
+        <th></th>
     </tr>
     <% @agent.policies.each do |p| %>
     <tr>
         <td><%= link_to p.number, account_policy_path(p.id) %></td>
         <td><%= p.last_name %></td>
         <td><%= p.vehicles.count %></td>
+        <td><%= link_to 'Remove', account_policy_path(p.id), :class=>"btn btn-link",
+            :method=> :delete , :confirm=>"Are you sure you want to remove this policy?" %>
     </tr>
     <% end %>
 </table>
