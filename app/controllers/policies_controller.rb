@@ -44,16 +44,6 @@ class PoliciesController < ApplicationController
         redirect_to account_url
     end
 
-    def add_object_link(name, form, object, partial, where)
-        html = render(:partial => partial, :locals => { :form => form}, :object => object)
-        logger.debug(html)
-        view_context.link_to_function name, %{
-          var new_object_id = new Date().getTime() ;
-          var html = jQuery(#{js html}.replace(/index_to_replace/g, new_object_id)).hide();
-          html.appendTo(jQuery("#{where}")).slideDown('slow');
-        }
-    end
-
     private
         def policy_params
             params.require(:policy).permit(

@@ -47,12 +47,4 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record
   end
 
-  def js(data)
-  if data.respond_to? :to_json
-    data.to_json
-  else
-    data.inspect.to_json
-  end
-end
-
 end
