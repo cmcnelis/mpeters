@@ -1,8 +1,8 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM
-  client_secret: EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM
+  client_id: AaYcMRA8wLvlRTZswDCgn7auLUKW5aMQ-FI05NdvvqLqeFpY_78vInumPpTl
+  client_secret: EAnS5hBHkx936SuC0GEcxGWVwBsp6QFzWJsuFGRoox1F_2jQ_8ceH_467ul1
 
   # Mode can be 'live' or 'sandbox'
   mode: sandbox
@@ -14,7 +14,7 @@ test: &default
   signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: Platform.sdk.seller@gmail.com
+  sandbox_email_address: mcnelis.chris-facilitator@gmail.com
 
   # # IP Address
   # ip_address: 127.0.0.1

@@ -1,5 +1,4 @@
-require 'paypal-sdk-rest'
-include PayPal::SDK::REST
+require 'pay_pal_helper'
 
 class VehiclesController < ApplicationController
 
@@ -60,7 +59,9 @@ class VehiclesController < ApplicationController
 
     def transaction
         logger.debug('Yup we are paying now!!!')
-        redirect_to root_path
+        @paypal = PayPalHelper.new(params)
+        #@paypal.make_payment
+        redirect_to pay_path
     end
 
     private
@@ -73,5 +74,4 @@ class VehiclesController < ApplicationController
                 :previous_deductible,
                 :drivers)
         end
-
 end

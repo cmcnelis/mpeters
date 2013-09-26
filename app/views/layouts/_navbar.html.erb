@@ -20,7 +20,7 @@
                     <%= link_to "Account", account_path  %>
                 </li>
                 <li>
-                    <%= link_to "Logout", logout_path , :confirm=>"You sure?"  %>
+                    <%= link_to "Logout", logout_path , :data=>{:confirm=>"You sure?"}  %>
                 </li>
                 <% else %>
                 <li>

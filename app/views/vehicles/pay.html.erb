@@ -11,48 +11,51 @@
         </div>
 
         <div class="col-md-6">
-            <div>Billing Address</div>
-            <%= form_for @vehicle , :url=>pay_path do |f| %>
-            <%= f.fields_for :transactions do |t| %>
-        <p>
-            <%= t.label :first_name %>
-            <%= t.text_field :firstname, :value=>@vehicle.policy.first_name %>
-        </p>
-        <p>
-            <%= t.label :last_name %>
-            <%= t.text_field :last_name, :value=>@vehicle.policy.last_name %>
-        </p>
-        <p>
-            <%= t.label :address %>
-            <%= t.text_field :address, :value=>@vehicle.policy.address %>
-        </p>
-        <p>
-            <%= t.label :city %>
-            <%= t.text_field :city, :value=>@vehicle.policy.city %>
-        </p>
-        <p>
-            <%= t.label :zip_code %>
-            <%= t.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
-        </p>
-            <div>Card Information</div>
-            <p>
-            <%= t.label :card_number %>
-            <%= t.text_field :card_number %>
-        </p>
-        <p>
-            <%= t.label :card_type %>
-            <%= t.text_field :card_type %>
-        </p>
-            <%= t.label :exp, "Expiration" %>
-            <%= t.text_field :exp , :placeholder=>"mm/yy"%>
-        <p>
-            <%= t.label :csc %>
-            <%= t.text_field :csc %>
-        </p>
-            <% end %>
-            <%= f.submit 'Submit', :class=>'btn btn-primary' %>
-            <% end %>
-        </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3>Billing Information</h3>
+                </div>
+                <div class="panel-body">
+                    <%= form_tag(pay_path, method:  "patch")  do %>
+                        <%= label_tag :first_name %>
+                        <%= text_field_tag :firstname, @vehicle.policy.first_name %>
+                    </p>
+                    <p>
+                        <%= label_tag :last_name %>
+                        <%= text_field_tag :last_name,  @vehicle.policy.last_name %>
+                    </p>
+                    <p>
+                        <%= label_tag :address %>
+                        <%= text_field_tag :address, @vehicle.policy.address %>
+                    </p>
+                    <p>
+                        <%= label_tag :city %>
+                        <%= text_field_tag :city, @vehicle.policy.city %>
+                    </p>
+                    <p>
+                        <%= label_tag :zip_code %>
+                        <%= text_field_tag :zip_code , @vehicle.policy.zip_code %>
+                    </p>
+                        <div>Card Information</div>
+                        <p>
+                        <%= label_tag :card_number %>
+                        <%= text_field_tag :card_number %>
+                    </p>
+                    <p>
+                        <%= label_tag :card_type %>
+                        <%= text_field_tag :card_type %>
+                    </p>
+                        <%= label_tag :exp, "Expiration" %>
+                        <%= text_field_tag(:exp , nil, placeholder: "MM/YY") %>
+                    <p>
+                        <%= label_tag :csc %>
+                        <%= text_field_tag :csc %>
+                    </p>
+                        <%= submit_tag 'Submit', :class=>'btn btn-primary' %>
+                        <% end %>
+                </div>
+            </div> <!-- panel body -->
+        </div><!-- panel -->
     </div>
 </div>
 
