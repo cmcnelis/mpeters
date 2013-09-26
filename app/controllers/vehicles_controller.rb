@@ -1,3 +1,6 @@
+require 'paypal-sdk-rest'
+include PayPal::SDK::REST
+
 class VehiclesController < ApplicationController
 
     before_filter :require_user, :except=>[:pay, :transaction]
@@ -52,7 +55,7 @@ class VehiclesController < ApplicationController
 
     def pay
         @vehicle = Vehicle.find(params[:id])
-        1.times {@vehicle.transactions.build}
+        1.times {@vehicle.paypal_transactions.build}
     end
 
     def transaction

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925202217) do
+ActiveRecord::Schema.define(version: 20130926164629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,21 +40,7 @@ ActiveRecord::Schema.define(version: 20130925202217) do
     t.datetime "updated_at"
   end
 
-  create_table "policies", force: true do |t|
-    t.string   "number"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email"
-    t.integer  "agent_id"
-  end
-
-  create_table "transactions", force: true do |t|
+  create_table "paypal_transactions", force: true do |t|
     t.integer  "amount"
     t.string   "pp_id"
     t.boolean  "approved"
@@ -72,7 +58,19 @@ ActiveRecord::Schema.define(version: 20130925202217) do
     t.datetime "updated_at"
   end
 
-  add_index "transactions", ["vehicle_id"], name: "index_transactions_on_vehicle_id", using: :btree
+  create_table "policies", force: true do |t|
+    t.string   "number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.integer  "agent_id"
+  end
 
   create_table "vehicles", force: true do |t|
     t.string   "vin"
