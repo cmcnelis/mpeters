@@ -1,5 +1,6 @@
 #spec/models/policy_spec
 
+
 require 'spec_helper'
 
 describe Policy do

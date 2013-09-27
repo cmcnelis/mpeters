@@ -1,4 +1,5 @@
 require 'pay_pal_helper'
+require_dependency 'payment_info'
 
 class VehiclesController < ApplicationController
 
@@ -54,12 +55,13 @@ class VehiclesController < ApplicationController
 
     def pay
         @vehicle = Vehicle.find(params[:id])
-        1.times {@vehicle.paypal_transactions.build}
+        @payment_info = PaymentInfo.new
     end
 
     def transaction
         logger.debug('Yup we are paying now!!!')
-        @paypal = PayPalHelper.new(params)
+        logger.debug("Params >> #{params.inspect}")
+        @payinfo = PaymentInfo.new(params[:payment_info])
         #@paypal.make_payment
         redirect_to pay_path
     end

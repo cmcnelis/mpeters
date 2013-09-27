@@ -16,43 +16,45 @@
                     <h3>Billing Information</h3>
                 </div>
                 <div class="panel-body">
-                    <%= form_tag(pay_path, method:  "patch")  do %>
-                        <%= label_tag :first_name %>
-                        <%= text_field_tag :firstname, @vehicle.policy.first_name %>
+                    <%= form_for @payment_info , :url=>pay_path ,:method=>'post' do |f| %>
+                        <%= f.label :first_name %>
+                        <%= f.text_field :first_name, :value=>@vehicle.policy.first_name %>
                     </p>
                     <p>
-                        <%= label_tag :last_name %>
-                        <%= text_field_tag :last_name,  @vehicle.policy.last_name %>
+                        <%= f.label :last_name %>
+                        <%= f.text_field :last_name,  :value=>@vehicle.policy.last_name %>
                     </p>
                     <p>
-                        <%= label_tag :address %>
-                        <%= text_field_tag :address, @vehicle.policy.address %>
+                        <%= f.label :address %>
+                        <%= f.text_field :address, :value=>@vehicle.policy.address %>
                     </p>
                     <p>
-                        <%= label_tag :city %>
-                        <%= text_field_tag :city, @vehicle.policy.city %>
+                        <%= f.label :city %>
+                        <%= f.text_field :city, :value=>@vehicle.policy.city %>
                     </p>
                     <p>
-                        <%= label_tag :zip_code %>
-                        <%= text_field_tag :zip_code , @vehicle.policy.zip_code %>
+                        <%= f.label :zip_code %>
+                        <%= f.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
                     </p>
-                        <div>Card Information</div>
+                        <div><h4>Card Information</h4></div>
                         <p>
-                        <%= label_tag :card_number %>
-                        <%= text_field_tag :card_number %>
+                        <%= f.label :card_type %>
+                        <%= f.text_field :card_type %>
                     </p>
-                    <p>
-                        <%= label_tag :card_type %>
-                        <%= text_field_tag :card_type %>
+                        <p>
+                        <%= f.label :card_number %>
+                        <%= f.text_field :card_number %>
+
+                        <%= f.label :cvv2 %>
+                        <%= f.text_field :cvv2%>
                     </p>
-                        <%= label_tag :exp, "Expiration" %>
-                        <%= text_field_tag(:exp , nil, placeholder: "MM/YY") %>
+
                     <p>
-                        <%= label_tag :csc %>
-                        <%= text_field_tag :csc %>
+                        <%= f.label :exp, "Expiration" %>
+                        <%= f.text_field :exp , :placeholder=> "MM/YY" %>
                     </p>
                         <%= submit_tag 'Submit', :class=>'btn btn-primary' %>
-                        <% end %>
+                    <% end %>
                 </div>
             </div> <!-- panel body -->
         </div><!-- panel -->

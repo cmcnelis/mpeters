@@ -2,18 +2,18 @@ require 'paypal-sdk-rest'
 
 class PayPalHelper
     include PayPal::SDK::REST
+
     def initialize(options)
-        Rails.logger.debug "Creating PayPalHelper"
+        Rails.logger.debug "Creating PayPalHelper >> #{options.inspect}"
         @options = options
-        Rails.logger.debug(options.inspect)
     end
 
     def make_payment
 
-            PayPal::SDK::REST.set_config(
-                    :mode => "sandbox", # "sandbox" or "live"
-                    :client_id => "AaYcMRA8wLvlRTZswDCgn7auLUKW5aMQ-FI05NdvvqLqeFpY_78vInumPpTl",
-                    :client_secret => "EAnS5hBHkx936SuC0GEcxGWVwBsp6QFzWJsuFGRoox1F_2jQ_8ceH_467ul1")
+            # PayPal::SDK::REST.set_config(
+            #         :mode => "sandbox", # "sandbox" or "live"
+            #         :client_id => "AaYcMRA8wLvlRTZswDCgn7auLUKW5aMQ-FI05NdvvqLqeFpY_78vInumPpTl",
+            #         :client_secret => "EAnS5hBHkx936SuC0GEcxGWVwBsp6QFzWJsuFGRoox1F_2jQ_8ceH_467ul1")
 
             # Build Payment object
             @payment = Payment.new({
