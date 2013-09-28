@@ -62,7 +62,13 @@ class VehiclesController < ApplicationController
         logger.debug('Yup we are paying now!!!')
         logger.debug("Params >> #{params.inspect}")
         @payinfo = PaymentInfo.new(params[:payment_info])
-        #@paypal.make_payment
+        if @payinfo.valid?
+            logger.debug("Pooo")
+            #@paypal.make_payment
+        else
+            flash[:notice] = "Something is wrong dude!"
+        end
+
         redirect_to pay_path
     end
 

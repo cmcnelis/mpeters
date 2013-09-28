@@ -15,7 +15,7 @@ class PaymentInfo
     validates_presence_of :zip_code
     validates_presence_of :card_number
     validates_presence_of :cvv2
-    validates_presence_of :type
+    validates_presence_of :card_type
     validates_presence_of :amount
 
 
