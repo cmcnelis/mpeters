@@ -11,6 +11,17 @@
         </div>
 
         <div class="col-md-6">
+              <div>
+<% if @payment_info.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@payment_info.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <ul>
+        <% @payment_info.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+<% end %>
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3>Billing Information</h3>

@@ -54,22 +54,25 @@ class VehiclesController < ApplicationController
     end
 
     def pay
+        logger.debug("Pay<< params = #{params.inspect}")
         @vehicle = Vehicle.find(params[:id])
         @payment_info = PaymentInfo.new
+        logger.debug("Pay >> vehicle = #{@vehicle.inspect}")
     end
 
     def transaction
         logger.debug('Yup we are paying now!!!')
         logger.debug("Params >> #{params.inspect}")
-        @payinfo = PaymentInfo.new(params[:payment_info])
-        if @payinfo.valid?
+        @vehicle = Vehicle.find(params[:id])
+        @payment_info = PaymentInfo.new(params[:payment_info])
+        if @payment_info.valid?
             logger.debug("Pooo")
             #@paypal.make_payment
+            redirect_to root_path
         else
-            flash[:notice] = "Something is wrong dude!"
+            render :action=>'pay'
         end
 
-        redirect_to pay_path
     end
 
     private
