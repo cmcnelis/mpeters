@@ -2,8 +2,6 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-Rails.logger = Logger.new(STDOUT)
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
@@ -31,10 +29,7 @@ module Demo
         :request_specs => true
         g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
-# config.autoload_paths += %W(#{config.root}/app/classes)
-#     Rails.logger.info "Config root >>> #{config.root}"
-#     Rails.logger.info "AutoLoad Path >>>>> #{config.autoload_paths}"
-#     Rails.logger.info "Config >>> #{config.inspect}"
+
   end
 end
 
