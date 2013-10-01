@@ -61,7 +61,7 @@ class PayPalHelper
 
           Rails.logger.debug "PaymentInfo>> Creating Transaction..."
           # TODO: Need to handle proper error handling on this path.
-          @vehicle.paypal_transactions.create!(
+          @transaction = @vehicle.paypal_transactions.create!(
             { :pp_id=> @payment.id,
               :amount =>@payment.transactions.first.amount.total,
               :approved => @payment.state == 'approved' ? true : false,
@@ -77,6 +77,12 @@ class PayPalHelper
               ## Need to think about how to display status for agent.
               :status=> @payment.state == 'approved' ? PaypalTransaction::ACTIVE : PaypalTransaction::PENDING
               })
+
+          if @transaction.status == PaypalTransaction::ACTIVE
+            @vehicle.update!(:start_date=>@payment.created_at,
+              :expr_date=>@payment.created + 1.year })
+           end
+
            Rails.logger.debug "PaymentInfo >> Transaction created...."
        else
           Rails.logger.debug "PaymentInfo>>payment.create failure : #{@payment.error}"
