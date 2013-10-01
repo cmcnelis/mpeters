@@ -1,5 +1,7 @@
 Demo::Application.routes.draw do
 
+  get "paypal_transactions/index"
+  get "paypal_transactions_controller/index"
   get "about" => "static_pages#about"
   get "contact" => "static_pages#contact"
   post 'login' => 'agent_sessions#create'
@@ -14,7 +16,9 @@ Demo::Application.routes.draw do
 
   resource :account , :controller=>"agents" do
     resources :policies do
-      resources :vehicles
+      resources :vehicles do
+        resources :paypal_transactions
+        end
       end
   end
 

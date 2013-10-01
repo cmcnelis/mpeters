@@ -67,7 +67,8 @@ class VehiclesController < ApplicationController
         @payment_info = PaymentInfo.new(params[:payment_info])
         if @payment_info.valid?
             logger.debug("Pooo")
-            #@paypal.make_payment
+            @paypal = PayPalHelper.new(@payment_info, @vehicle)
+            @paypal.make_payment
             redirect_to root_path
         else
             render :action=>'pay'

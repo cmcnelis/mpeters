@@ -28,6 +28,11 @@
                 </div>
                 <div class="panel-body">
                     <%= form_for @payment_info , :url=>pay_path ,:method=>'post' do |f| %>
+                    <p>
+                        <%= f.label :amount, "Amount $" %>
+                        <%= f.text_field :amount,  :value=>"10.00", :readonly=>true%>
+                    </p>
+                    <p>
                         <%= f.label :first_name %>
                         <%= f.text_field :first_name, :value=>@vehicle.policy.first_name %>
                     </p>
@@ -44,15 +49,19 @@
                         <%= f.text_field :city, :value=>@vehicle.policy.city %>
                     </p>
                     <p>
+                        <% f.label :state %>
+                        <%= f.text_field :state, :value=>@vehicle.policy.state %>
+                    </p>
+                    <p>
                         <%= f.label :zip_code %>
                         <%= f.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
                     </p>
                         <div><h4>Card Information</h4></div>
-                        <p>
+                    <p>
                         <%= f.label :card_type %>
                         <%= f.text_field :card_type %>
                     </p>
-                        <p>
+                    <p>
                         <%= f.label :card_number %>
                         <%= f.text_field :card_number %>
 

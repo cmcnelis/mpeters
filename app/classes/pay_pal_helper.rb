@@ -1,11 +1,14 @@
 require 'paypal-sdk-rest'
+require 'paypal_transaction'
 
 class PayPalHelper
     include PayPal::SDK::REST
 
-    def initialize(options)
-        Rails.logger.debug "Creating PayPalHelper >> #{options.inspect}"
-        @options = options
+    def initialize(payment_info, vehicle)
+        Rails.logger.debug "Using updated class!!!"
+        Rails.logger.debug "Creating PayPalHelper >> #{payment_info.inspect}"
+        @payment_info = payment_info
+        @vehicle = vehicle
     end
 
     def make_payment
@@ -38,22 +41,50 @@ class PayPalHelper
                       :transactions => [{
                             :item_list => {
                                 :items => [{
-                                    :name => "item",
-                                    :sku => "item",
-                                    :price => "1",
+                                    :name => "Deductible Coverage",
+                                    :sku => @vehicle.vin,
+                                    :price => @payment_info.amount,
                                     :currency => "USD",
                                     :quantity => 1 }]},
                     :amount => {
-                      :total => "1.00",
+                      :total => @payment_info.amount,
                       :currency => "USD" },
                       :description => "This is the payment transaction description." }]})
 
+          Rails.logger.debug "PaymentInfo>>>make_payment>> #{@payment.inspect}"
+
         # Create Payment and return the status(true or false)
         if @payment.create
-          @payment.id     # Payment Id
-        else
+          Rails.logger.debug "PaymentInfo>>payment.create success : #{@payment.inspect}"
+          # @payment.id     # Payment Id
+          credit_card = @payment.payer.funding_instruments.first.credit_card
+
+          Rails.logger.debug "PaymentInfo>> Creating Transaction..."
+          # TODO: Need to handle proper error handling on this path.
+          @vehicle.paypal_transactions.create!(
+            { :pp_id=> @payment.id,
+              :amount =>@payment.transactions.first.amount.total,
+              :approved => @payment.state == 'approved' ? true : false,
+              :address => credit_card.billing_address.line1,
+              :city=>credit_card.billing_address.city,
+              :state=>credit_card.billing_address.state,
+              :zip_code=>credit_card.billing_address.postal_code,
+              :card_number=>credit_card.number,
+              :exp=>"#{credit_card.expire_month} / #{credit_card.expire_year}",
+              :first_name=>credit_card.first_name,
+              :last_name=>credit_card.last_name,
+              :card_type=>credit_card.type,
+              ## Need to think about how to display status for agent.
+              :status=> @payment.state == 'approved' ? PaypalTransaction::ACTIVE : PaypalTransaction::PENDING
+              })
+           Rails.logger.debug "PaymentInfo >> Transaction created...."
+       else
+          Rails.logger.debug "PaymentInfo>>payment.create failure : #{@payment.error}"
           @payment.error  # Error Hash
         end
+
+        # Update Vehicle Transaction
+
     end
 
 end
