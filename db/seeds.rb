@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-vehicles = Vehicle.create([
+vehicles = Vehicle.create!([
     {
         :vin=>'A1234567890123456',
         :make=>'Chevy',
@@ -28,7 +28,7 @@ vehicles = Vehicle.create([
     }
 ]) #end vehicle.create
 
-policies = Policy.create([
+policies = Policy.create!([
     {
         :number=>'123456789-1',
         :first_name=>'John',
@@ -38,10 +38,11 @@ policies = Policy.create([
         :state=>'TX',
         :zip_code=>'12345',
         :email=>'johndoe@email.com'
+        :email_confirmation=>'johndoe@email.com'
     }
 ])
 
-agent = Agent.create(
+agent = Agent.create!(
         :first_name=>'Bill',
         :last_name=>'Smith',
         :company=>'Farmers',
