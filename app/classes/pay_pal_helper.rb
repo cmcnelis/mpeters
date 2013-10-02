@@ -80,7 +80,7 @@ class PayPalHelper
 
           if @transaction.status == PaypalTransaction::ACTIVE
             @vehicle.update!(:start_date=>@payment.created_at,
-              :expr_date=>@payment.created + 1.year })
+              :expr_date=>@payment.created + 1.year )
            end
 
            Rails.logger.debug "PaymentInfo >> Transaction created...."

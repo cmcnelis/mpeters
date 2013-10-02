@@ -12,6 +12,8 @@ Demo::Application.routes.draw do
   get 'account/policies/:policy_id/vehicles/:id/pay' => 'vehicles#pay', :as=>'pay'
   post 'account/policies/:policy_id/vehicles/:id/pay' => 'vehicles#transaction'
 
+  put 'account/policies/:policy_id/vehicles/:id/notify' => 'vehicles#notify', :as=>'notify'
+
   resource :agent_sessions
 
   resource :account , :controller=>"agents" do

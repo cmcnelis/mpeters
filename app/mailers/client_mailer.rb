@@ -1,3 +1,8 @@
 class ClientMailer < ActionMailer::Base
-  default from: "from@example.com"
+
+  def notify_vehicle(vehicle)
+    @vehicle = vehicle
+    mail(to:'steph_mcnelis@yahoo.com', subject: "Testing email")
+  end
+
 end

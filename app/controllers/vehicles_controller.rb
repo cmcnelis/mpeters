@@ -76,6 +76,14 @@ class VehiclesController < ApplicationController
 
     end
 
+    def notify
+        logger.debug "VehicleController>>notify <<<"
+        @vehicle = Vehicle.find(params[:id])
+        mail = ClientMailer.test_email(@vehicle).deliver
+        logger.debug "sent mail #{mail.inspect}"
+        redirect_to account_policy_vehicle_path(params[:policy_id], params[:id])
+    end
+
     private
         def vehicle_params
             params.require(:vehicle).permit(:vin,
