@@ -1,20 +1,6 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <% if @agent.errors.any? %>
-            <div id="error_explanation">
-                <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-                <ul>
-                    <% @agent.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                    <% end %>
-                </ul>
-            </div>
-            <% end %>
-        </div>
-    </div>
-
+        <%= show_errors(@agent) %>
 
         <%= form.label :first_name %></br>
         <%= form.text_field :first_name %></br>
