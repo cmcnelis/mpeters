@@ -37,7 +37,7 @@ policies = Policy.create!([
         :city=>'Austin',
         :state=>'TX',
         :zip_code=>'12345',
-        :email=>'johndoe@email.com'
+        :email=>'johndoe@email.com',
         :email_confirmation=>'johndoe@email.com'
     }
 ])
