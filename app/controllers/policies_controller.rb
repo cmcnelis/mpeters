@@ -47,7 +47,7 @@ class PoliciesController < ApplicationController
     private
         def policy_params
             params.require(:policy).permit(
-                :number,  :first_name, :last_name,
+                :number,  :first_name, :last_name, :email, :email_confirmation,
                 :address, :city, :state, :zip_code, vehicles_attributes:
                 [ :id, :vin, :make, :model, :color, :deductible, :previous_deductible])
         end
