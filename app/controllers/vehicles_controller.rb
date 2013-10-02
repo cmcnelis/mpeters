@@ -81,6 +81,7 @@ class VehiclesController < ApplicationController
         @vehicle = Vehicle.find(params[:id])
         mail = ClientMailer.notify_vehicle(@vehicle, request).deliver
         logger.debug "sent mail #{mail.inspect}"
+        flash[:notice] = "Sent an email reminder to the policy holder."
         redirect_to account_policy_vehicle_path(params[:policy_id], params[:id])
     end
 

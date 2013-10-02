@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta content='text/html; charset=UTF-8'
+    http-equiv='Content-Type' />
   </head>
   <body>
-<p>
-This is the email template for users to pay for their deductible coverage.
-
-We can put cool things like the following:
-
-Vehicle Information:
-
-        VIN:  <%= @vehicle.vin %>
-     Make:   <%= @vehicle.make %>
-    Model:   <%= @vehicle.model %>
-</p>
-<p>
-To initiate your coverage for the above vehicle use the link below to
-securely pay for your subscription.
-
-<%= pay_url(@vehicle.policy_id, @vehicle.id, :host=>@request.host, :port=>@request.port) %>
-</p>
-</body>
+    <p>
+        This is the email template for users to pay for their
+        deductible coverage.<br>
+        We can put cool things like the following:<br>
+    </p>
+    <p>
+        Vehicle Information:<br>
+        VIN:  <%= @vehicle.vin %><br>
+        Make:   <%= @vehicle.make %><br>
+        Model:   <%= @vehicle.model %><br>
+    </p>
+    <p>
+        To initiate your coverage for the above vehicle use the link below to
+        securely pay for your subscription. <br></p>
+      <p> <%= pay_url(@vehicle.policy_id, @vehicle.id,
+                                    :host=>@request.host, :port=>@request.port) %>
+                                <br>
+      </p>
+ </body>
 </html>

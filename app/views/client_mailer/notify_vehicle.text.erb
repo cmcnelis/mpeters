@@ -8,6 +8,7 @@ Vehicle Information:
      Make:   <%= @vehicle.make %>
     Model:   <%= @vehicle.model %>
 
-To initiate your coverage for the above vehicle use the link below to securely pay for your subscribtion.
+To initiate your coverage for the above vehicle use the link below to securely
+pay for your subscribtion.
 
 <%= pay_url(@vehicle.policy_id, @vehicle.id, :host=>'localhost:3000') %>
