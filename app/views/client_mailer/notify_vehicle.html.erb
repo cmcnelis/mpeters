@@ -16,7 +16,8 @@ Vehicle Information:
     Model:   <%= @vehicle.model %>
 </p>
 <p>
-To initiate your coverage for the above vehicle use the link below to securely pay for your subscription.
+To initiate your coverage for the above vehicle use the link below to
+securely pay for your subscription.
 
 <%= pay_url(@vehicle.policy_id, @vehicle.id, :host=>@request.host, :port=>@request.port) %>
 </p>
