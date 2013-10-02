@@ -1,8 +1,9 @@
 class ClientMailer < ActionMailer::Base
 
-  def notify_vehicle(vehicle)
+  def notify_vehicle(vehicle, request)
+    @request = request
     @vehicle = vehicle
-    mail(to:'steph_mcnelis@yahoo.com', subject: "Testing email")
+    mail(to:'chris_mcnelis@yahoo.com', subject: "Testing email")
   end
 
 end
