@@ -5,22 +5,9 @@
 </div>
 <div class="container">
 <%= form_for @agent_session  do |f| %>
-  <% if @agent_session.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@agent_session.errors.count, "error") %> prohibited:</h2>
-    <ul>
-      <% @agent_session.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-  <%= f.label :email%><br />
-  <%= f.text_field :email , :size=>25%><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password, :size=> 25 %><br />
-  <br />
+  <%= show_errors(@agent_session) %>
+  <%= f.text_field :email , :size=>25 , :placeholder=>'Email address' %><br><br>
+  <%= f.password_field :password, :size=> 25 , :placeholder=>"Password" %><br><br>
   <%= f.submit "Login" , :class=>"btn btn-primary"%>
 <% end %>
 </div>
