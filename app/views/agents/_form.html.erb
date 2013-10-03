@@ -1,4 +1,5 @@
 <%= show_errors(@agent) %>
+<fieldset>
 <div class="form-group">
         <%= form.label :first_name, "First Name", :class=>'col-lg-2 control-label'%>
     <div class="col-lg-10">
@@ -47,5 +48,6 @@
         <%= link_to "Cancel", :back,  :class=> "btn btn-danger btn-sm", :confirm=>"Are you sure?" %>
     </div>
 </div>
+</fieldset>
 
 
