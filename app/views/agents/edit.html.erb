@@ -5,7 +5,9 @@
     </div>
 </div>
 
-<%= form_for @agent , :url=>account_path do |f| %>
+<div class="container">
+<%= form_for @agent , :class=>'form-horizontal', :url=>account_path do |f| %>
     <% render :partial => 'form', :object=>f  %>
 <% end %>
+</div>
 
