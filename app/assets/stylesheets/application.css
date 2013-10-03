@@ -17,3 +17,5 @@ body {
   padding-top: 80px;
   padding-bottom: 70px;
 }
+
+.field_with_errors { display: inline; }
