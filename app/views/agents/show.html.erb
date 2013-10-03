@@ -1,33 +1,31 @@
-<% content_for :title , "My Account" %>
-
+<% content_for :title , "Account" %>
 <div class="container">
-<div class="row">
-    <div class="page-header">
-        <h1><%= "#{@agent.first_name}  #{@agent.last_name}" %>
-            <%= link_to "Edit", edit_account_path, :class=>"btn btn-link" %></h1>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+        <h3><%= "#{@agent.first_name}  #{@agent.last_name}" %> <%= link_to "Edit", edit_account_path, :class=>"btn btn-link" %></h3>
+        </div>
+        <div class="panel-body">
+        <div class="row">
+        <div class="col-md-3">
+            <strong>Company </strong>
+            <%= @agent.company %>
+        </div>
+        <div class="col-md-3">
+            <strong>Email </strong>
+            <%= @agent.email %>
+        </div>
+    </div>
+    </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="span4">
-        <strong>Company </strong>
-        <%= @agent.company %>
-    </div>
-    <div class="span4">
-        <strong>Email </strong>
-        <%= @agent.email %>
-    </div>
-</div>
-
-<div class="row">
-    <div class="page-header">
-        <h1>Policies
-         <%= link_to "Add Policy", new_account_policy_path, :class=>"btn btn-link" %>
-     </h1>
-    </div>
-</div>
-</div>
-
 <div class="container">
-        <%= render :partial=>"policies/policies", :object=>@agent %>
+    <div class="panel panel-default">
+        <div class='panel-heading'>
+            <h3>Policies <%= link_to "Add Policy", new_account_policy_path, :class=>"btn btn-link" %></h3>
+        </div>
+        <div class="panel-body">
+            Current policies.
+        </div>
+            <%= render :partial=>"policies/policies", :object=>@agent %>
+        </div>
 </div> <!-- container -->
