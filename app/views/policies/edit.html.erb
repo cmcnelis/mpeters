@@ -5,13 +5,16 @@
     </div>
 </div>
 
+<div class="container">
 <%= form_for @policy, :url=>account_policy_path do |f| %>
     <%= render :partial=>'form', :object=>f %>
-    <div class="container">
-        <%= f.submit 'Submit', :class=>'btn btn-primary' %>
-<%= link_to 'Cancel', :back, :class=>'btn btn-primary', :confirm=>"Are you sure?" %>
-    </div
+<div class="form-group">
+    <div class="col-lg-10 col-offset-2">
+        <%= f.submit 'Submit', :class=>'btn btn-success btn-sm' %>
+        <%= link_to 'Cancel', account_policy_path, :class=>'btn btn-danger btn-sm', :confirm=>"Are you sure?" %>
+    </div>
+</div>
 <% end %>
-
+</div>
 
 
