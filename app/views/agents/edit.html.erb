@@ -1,10 +1,4 @@
-<% content_for :title, "Edit Profile" %>
-<div class="container">
-    <div class="page-header">
-        <h1>Edit Profile</h1>
-    </div>
-</div>
-
+<% content_for :title, "Profile" %>
 <div class="container">
 <%= form_for @agent , :class=>'form-horizontal', :url=>account_path do |f| %>
     <% render :partial => 'form', :object=>f  %>
