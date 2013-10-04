@@ -48,6 +48,11 @@ module Demo
 #      html
 # end
 
+config.assets.precompile += ["glyphicons-halflings-regular.ttf",
+                         "glyphicons-halflings-regular.eot",
+                         "glyphicons-halflings-regular.svg",
+                         "glyphicaon-halflings-regular.woff"]
+
   end
 end
 

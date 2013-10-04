@@ -1,43 +1,43 @@
 <% content_for :title=>"Policy" %>
 
 <div class="container">
-    <div class="page-header">
-        <h1><%= "Policy -  #{@policy.number}" %>
-            <%= link_to "All Policies", account_path, :class=>"btn btn-link" %>
-            <%= link_to "Edit", edit_account_policy_path, :class=>"btn btn-link" %>
-            <%= link_to "Remove Policy", account_policy_path, :class=>"btn btn-link",
-            :method=> :delete , :confirm=>"Are you sure you want to remove this policy?" %>
-        </h1>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4><%= "Policy -  #{@policy.number}" %>
+                <%= link_to "All Policies", account_path, :class=>"btn btn-link" %>
+                <%= link_to "Edit", edit_account_policy_path, :class=>"btn btn-link" %>
+                <%= link_to "Remove Policy", account_policy_path, :class=>"btn btn-link",
+                :method=> :delete , :confirm=>"Are you sure you want to remove this policy?" %>
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Holder </strong>
+                    <%= "#{@policy.first_name} #{@policy.last_name}" %>
+                </div>
+                <div class="col-md-3">
+                    <strong>Email </strong>
+                    <%= @policy.email %>
+                </div>
+                <div class="col-md-3">
+                    <strong>Address </strong>
+                    <%= "#{@policy.address}, #{@policy.city}, #{@policy.state}, #{@policy.zip_code}" %>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="container">
-<div class="row">
-    <div class="span6">
-        <strong>Holder </strong>
-        <%= "#{@policy.first_name} #{@policy.last_name}" %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Vehicles <%= link_to "Add Vehicle", new_account_policy_vehicle_path(@policy.id), :class=>"btn btn-link" %></h4>
+        </div>
+        <div class="panel-body">
+            <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
+        </div>
     </div>
-    <div class="span6">
-        <strong>Email </strong>
-        <%= @policy.email %>
-    </div>
-</div>
-<div class="row">
-    <div class="span12">
-        <strong>Address </strong>
-        <%= "#{@policy.address}, #{@policy.city}, #{@policy.state}, #{@policy.zip_code}" %>
-    </div>
-</div>
-</div>
-
-</br>
-<div class="container">
-    <div class="page-header">
-        <h1>Vehicles <%= link_to "Add Vehicle",
-    new_account_policy_vehicle_path(@policy.id),
-   :class=>"btn btn-link" %></h1>
-    </div>
-        <%= render :partial=>"vehicles/vehicles", :object=>@policy %>
 </div>
 
 
