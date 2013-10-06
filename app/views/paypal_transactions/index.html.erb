@@ -1,17 +1,19 @@
 <div class="container">
-    <div class="page-header">
-        <h1>
-            Billing History - <%= @vehicle.vin %>
-            <%= link_to 'Back', :back , :class=>'btn btn-link'%>
-        </h1>
-    </div>
-        <% @transactions.each do |t| %>
-            <div class="row">
-                <div class="col-md-4">
+    <div class='panel panel-info'>
+        <div class='panel-heading'>
+            <h3>
+                Billing History - <%= @vehicle.vin %>
+                <%= link_to 'Back', account_policy_vehicle_path(@vehicle.policy.id, @vehicle.id) , :class=>'btn btn-link'%>
+            </h3>
+        </div>
+        <div class='panel-body'>
+            <% @transactions.each do |t| %>
+                <div class="row">
+                    <div class="col-md-4">
                       <strong><%= "#{t.first_name} #{t.last_name}"%></strong>
-                </div>
-            </div>
-            <div class="row">
+                  </div>
+              </div>
+              <div class="row">
                 <div class="col-md-4">
                     <strong>Number </strong><%= t.card_number %>
                 </div>
@@ -21,15 +23,17 @@
                 <div class="col-md-4">
                     <strong>Amount $ </strong><%= t.amount %>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <strong> Start Date </strong><%= t.created_at %>
                 </div>
-                <div class="col-md-4">
-                    <strong> End Date </strong><%=t.created_at + 1.year %>
+                <div class="row">
+                    <div class="col-md-4">
+                        <strong> Start Date </strong><%= t.created_at %>
+                    </div>
+                    <div class="col-md-4">
+                        <strong> End Date </strong><%=t.created_at + 1.year %>
+                    </div>
                 </div>
+                <hr>
+            <% end %>
             </div>
-            <hr>
-        <% end %>
     </div>
+</div>

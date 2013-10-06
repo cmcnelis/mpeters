@@ -1,12 +1,14 @@
 <% content_for :title, 'Edit Vehicle' %>
 <div class="container">
-    <div class="page-header">
-        <h1>Edit Vehicle</h1>
+    <div class='panel panel-default'>
+        <div class='panel-heading'>
+            <h3>Edit Vehicle</h3>
+        </div>
+        <div class='panel-body'>
+            <%= form_for @vehicle , :url=>account_policy_vehicle_path do |f| %>
+            <%= show_errors(@vehicle) %>
+            <%= render :partial=>'form' , :object=>f %>
+            <% end %>
+        </div>
     </div>
 </div>
-
-
-<%= form_for @vehicle , :url=>account_policy_vehicle_path do |f| %>
-    <%= show_errors(@vehicle) %>
-    <%= render :partial=>'form' , :object=>f %>
-<% end %>
