@@ -7,7 +7,6 @@
 
 
 <%= form_for @vehicle , :url=>account_policy_vehicle_path do |f| %>
-<div class="container">
     <%= show_errors(@vehicle) %>
     <%= render :partial=>'form' , :object=>f %>
 <% end %>

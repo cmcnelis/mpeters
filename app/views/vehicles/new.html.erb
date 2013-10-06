@@ -1,27 +1,16 @@
 <% content_for :title, 'New Vehicle' %>
-<div class="container">
-    <div class="page-header">
-        <h1>Add Vehicle</h1>
-    </div>
-</div>
 
-
-<%= form_for @vehicle, :url=>account_policy_vehicles_path do |f| %>
-<div class="container">
-<div class="row">
-        <% if @vehicle.errors.any? %>
-        <div id="error_explanation">
-            <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-            <ul>
-                <% @vehicle.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-                <% end %>
-            </ul>
+<div class='container'>
+    <div class="panel panel-default">
+        <div class='panel-heading'>
+            <h3>New Vehicle</h3>
         </div>
-        <% end %>
+        <div class='panel-body'>
+            <%= form_for @vehicle, :url=>account_policy_vehicles_path do |f| %>
+            <%= show_errors(@vehicle) %>
+            <%= render :partial=>'form', :locals=>{:form=>f }%>
+            <% end %>
+        </div>
     </div>
 </div>
-    <%= render :partial=>'form', :locals=>{:form=>f }%>
-<% end %>
 

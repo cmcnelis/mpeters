@@ -1,6 +1,4 @@
-<div class="container">
-<%= render :partial=>'vehicles_mini', :locals=>{:form=>form} %>
-<%= form.submit 'Submit', :class=>'btn btn-primary' %>
-<%= link_to 'Cancel', :back, :class=>'btn btn-primary', :confirm=>"Are you sure?" %>
-</div>
+ <%= render :partial=>'vehicles_mini', :locals=>{:form=>form} %>
+<%= form.submit 'Submit', :class=>'btn btn-default' %>
+<%= link_to 'Cancel', :back, :class=>'btn btn-default', :confirm=>"Are you sure?" %>
 
