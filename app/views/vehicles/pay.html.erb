@@ -1,83 +1,62 @@
 <div class="container">
-    <div class="row">
-        <div class="page-header">
-            <h1>Coverage Paymet</h1>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3>Coverage Payment</h3>
         </div>
-    </div>
+        <div class="panel-body">
+            <% show_errors(@payment_info) %>
+            <div class="col-md-3">
+                <%= render :partial=>'vehicle_view', :locals=>{:v=>@vehicle} %>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-success">
+                    <div class='panel-heading'>
+                        <h3>Billing Information</h3>
+                    </div>
+                    <div class='panel-body'>
+                        <%= form_for @payment_info , :url=>pay_path ,:method=>'post' do |f| %>
 
-    <div class="row">
-        <div class="col-md-6">
-            <%= render :partial=>'vehicle_view', :locals=>{:v=>@vehicle} %>
+                            <%= f.label :amount, "Amount $" %>
+                            <%= f.text_field :amount,  :value=>"10.00", :readonly=>true%>
+
+                            <%= f.label :first_name %>
+                            <%= f.text_field :first_name, :value=>@vehicle.policy.first_name %>
+
+                            <%= f.label :last_name %>
+                            <%= f.text_field :last_name,  :value=>@vehicle.policy.last_name %>
+
+                            <%= f.label :address %>
+                            <%= f.text_field :address, :value=>@vehicle.policy.address %>
+
+                            <%= f.label :city %>
+                            <%= f.text_field :city, :value=>@vehicle.policy.city %>
+
+                            <% f.label :state %>
+                            <%= f.text_field :state, :value=>@vehicle.policy.state %>
+
+                            <%= f.label :zip_code %>
+                            <%= f.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
+
+                            <div><h4>Card Information</h4></div>
+
+                            <%= f.label :card_type %>
+                            <%= f.text_field :card_type %>
+
+                            <%= f.label :card_number %>
+                            <%= f.text_field :card_number %>
+
+                            <%= f.label :cvv2 %>
+                            <%= f.text_field :cvv2%>
+
+                            <%= f.label :exp, "Expiration" %>
+                            <%= f.text_field :exp , :placeholder=> "MM/YY" %>
+
+                            <%= submit_tag 'Submit', :class=>'btn btn-default' %>
+                            <% end %>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="col-md-6">
-              <div>
-<% if @payment_info.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@payment_info.errors.count, "error") %> prohibited this post from being saved:</h2>
-        <ul>
-        <% @payment_info.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-<% end %>
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3>Billing Information</h3>
-                </div>
-                <div class="panel-body">
-                    <%= form_for @payment_info , :url=>pay_path ,:method=>'post' do |f| %>
-                    <p>
-                        <%= f.label :amount, "Amount $" %>
-                        <%= f.text_field :amount,  :value=>"10.00", :readonly=>true%>
-                    </p>
-                    <p>
-                        <%= f.label :first_name %>
-                        <%= f.text_field :first_name, :value=>@vehicle.policy.first_name %>
-                    </p>
-                    <p>
-                        <%= f.label :last_name %>
-                        <%= f.text_field :last_name,  :value=>@vehicle.policy.last_name %>
-                    </p>
-                    <p>
-                        <%= f.label :address %>
-                        <%= f.text_field :address, :value=>@vehicle.policy.address %>
-                    </p>
-                    <p>
-                        <%= f.label :city %>
-                        <%= f.text_field :city, :value=>@vehicle.policy.city %>
-                    </p>
-                    <p>
-                        <% f.label :state %>
-                        <%= f.text_field :state, :value=>@vehicle.policy.state %>
-                    </p>
-                    <p>
-                        <%= f.label :zip_code %>
-                        <%= f.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
-                    </p>
-                        <div><h4>Card Information</h4></div>
-                    <p>
-                        <%= f.label :card_type %>
-                        <%= f.text_field :card_type %>
-                    </p>
-                    <p>
-                        <%= f.label :card_number %>
-                        <%= f.text_field :card_number %>
-
-                        <%= f.label :cvv2 %>
-                        <%= f.text_field :cvv2%>
-                    </p>
-
-                    <p>
-                        <%= f.label :exp, "Expiration" %>
-                        <%= f.text_field :exp , :placeholder=> "MM/YY" %>
-                    </p>
-                        <%= submit_tag 'Submit', :class=>'btn btn-primary' %>
-                    <% end %>
-                </div>
-            </div> <!-- panel body -->
-        </div><!-- panel -->
     </div>
 </div>
 
