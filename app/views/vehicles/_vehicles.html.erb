@@ -16,7 +16,7 @@
         <td><%= v.make %></td>
         <td><%= v.model %></td>
         <td><%= v.deductible %></td>
-        <td> Pending </td>
+        <td> <%= v.is_covered ? "Active" : "Pending" %></td>
     </tr>
     <% end %>
 </table>
