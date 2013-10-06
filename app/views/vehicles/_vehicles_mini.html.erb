@@ -2,35 +2,53 @@
     <div class="form-group">
         <%= form.label :vin, "VIN", :class=>"col-md-2 control-label" %>
         <div class="col-md-10">
-            <%= form.text_field :vin, :class=>"form-control", :size=>10 %>
+            <%= form.text_field :vin, :class=>"form-control" %>
         </div>
     </div>
     <div class="form-group">
-        <%= form.label :drivers %>
-        <%= form.text_field :drivers, :placeholder=>"John Doe, Jane Doe" , :size=> 35%>
+        <%= form.label :drivers , :class=>"col-md-2 control-label" %>
+        <div class="col-md-10">
+            <%= form.text_field :drivers, :placeholder=>"John Doe, Jane Doe" , :class=>"form-control"%>
+        </div>
     </div>
     <div class="form-group">
-        <%= form.label :make%>
-        <%= form.text_field :make %>
+        <%= form.label :make, :class=>"col-md-2 control-label"%>
+        <div class="col-md-10">
+            <%= form.text_field :make , :class=>"form-control"%>
+        </div>
     </div>
     <div class="form-group">
-        <%= form.label :model%>
-        <%= form.text_field :model %>
+        <%= form.label :model, :class=>"col-md-2 control-label"%>
+        <div class="col-md-10">
+            <%= form.text_field :model, :class=>"form-control" %>
+        </div>
     </div>
     <div class="form-group">
-        <%= form.label :year %>
-        <%= form.text_field :year %>
+        <%= form.label :year , :class=>"col-md-2 control-label"%>
+        <div class="col-md-10">
+            <%= form.text_field :year, :class=>"form-control" %>
+        </div>
     </div>
     <div class="form-group">
-        <%= form.label :color %>
-        <%= form.text_field :color %>
+        <%= form.label :color , :class=>"col-md-2 control-label"%>
+        <div class="col-md-10">
+            <%= form.text_field :color, :class=>"form-control" %>
+        </div>
     </div>
     <div class="form-group">
-        <%= form.label :deductible %>
-        <%= form.text_field :deductible %>
+        <%= form.label :deductible, :class=>"col-md-2 control-label" %>
+        <div class='input-group col-md-10'>
+            <span class="input-group-addon">$</span>
+            <%= form.text_field :deductible , :class=>"form-control money"%>
+            <span class="input-group-addon">.00</span>
+        </div>
     </div>
     <div class="form-group">
-        <%= form.label :previous_deductible %>
-        <%= form.text_field :previous_deductible %>
+        <%= form.label :previous_deductible, :class=>"col-md-2 control-label" %>
+        <div class="col-md-10 input-group">
+            <span class="input-group-addon">$</span>
+            <%= form.text_field :previous_deductible , :class=>"form-control money"%>
+            <span class="input-group-addon">.00</span>
+        </div>
     </div>
 </fieldset>
