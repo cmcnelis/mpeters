@@ -4,7 +4,6 @@
             <h3>Coverage Payment</h3>
         </div>
         <div class="panel-body">
-            <% show_errors(@payment_info) %>
             <div class="col-md-3">
                 <%= render :partial=>'vehicle_view', :locals=>{:v=>@vehicle} %>
             </div>
@@ -15,44 +14,86 @@
                     </div>
                     <div class='panel-body'>
                         <%= form_for @payment_info , :url=>pay_path ,:method=>'post' do |f| %>
-
-                            <%= f.label :amount, "Amount $" %>
-                            <%= f.text_field :amount,  :value=>"10.00", :readonly=>true%>
-
-                            <%= f.label :first_name %>
-                            <%= f.text_field :first_name, :value=>@vehicle.policy.first_name %>
-
-                            <%= f.label :last_name %>
-                            <%= f.text_field :last_name,  :value=>@vehicle.policy.last_name %>
-
-                            <%= f.label :address %>
-                            <%= f.text_field :address, :value=>@vehicle.policy.address %>
-
-                            <%= f.label :city %>
-                            <%= f.text_field :city, :value=>@vehicle.policy.city %>
-
-                            <% f.label :state %>
-                            <%= f.text_field :state, :value=>@vehicle.policy.state %>
-
-                            <%= f.label :zip_code %>
-                            <%= f.text_field :zip_code , :value=>@vehicle.policy.zip_code %>
-
-                            <div><h4>Card Information</h4></div>
-
-                            <%= f.label :card_type %>
-                            <%= f.text_field :card_type %>
-
-                            <%= f.label :card_number %>
-                            <%= f.text_field :card_number %>
-
-                            <%= f.label :cvv2 %>
-                            <%= f.text_field :cvv2%>
-
-                            <%= f.label :exp, "Expiration" %>
-                            <%= f.text_field :exp , :placeholder=> "MM/YY" %>
-
+                        <%= show_errors(@payment_info) %>
+                        <fieldset>
+                            <div class='form-group'>
+                                <%= f.label :amount, "Amount $"  , :class=>'col-md-2 control-label'%>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :amount,  :value=>"10.00", :readonly=>true, :class=>'form-control money'%>
+                                </div>
+                            </div>
+                            <span class='col-md-3'></span>
+                            <div class='form-group'>
+                                <%= f.label :first_name, 'First Name', :class=>'control-label col-md-2' %>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :first_name, :value=>@vehicle.policy.first_name, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :last_name , 'Last Name', :class=>'control-label col-md-2'%>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :last_name,  :value=>@vehicle.policy.last_name, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :address , :class=>'control-label col-md-2'%>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :address, :value=>@vehicle.policy.address, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :city, :class=>'control-label col-md-2' %>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :city, :value=>@vehicle.policy.city, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :state, :class=>'control-label col-md-2' %>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :state, :value=>@vehicle.policy.state, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :zip_code, 'Zip Code', :class=>'control-label col-md-2' %>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :zip_code , :value=>@vehicle.policy.zip_code, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class='row'>
+                            <div class='col-md-6'>
+                                    <h4>Card Information</h4>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :card_type, 'Card Type', :class=>'control-label col-md-2' %>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :card_type, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :card_number , 'Card Number',  :class=>'control-label col-md-2'%>
+                                <div class='col-md-6'>
+                                    <%= f.text_field :card_number, :class=>'form-control' %>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :cvv2, 'CVV2', :class=>'control-label col-md-2' %>
+                                <div class='col-md-3'>
+                                    <%= f.text_field :cvv2, :class=>'form-control'%>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <%= f.label :exp, "Expiration", :class=>'control-label col-md-2' %>
+                                <div class='col-md-4'>
+                                    <%= f.text_field :exp , :placeholder=> "MM/YY", :class=>'form-control' %>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class='col-md-4'>
                             <%= submit_tag 'Submit', :class=>'btn btn-default' %>
-                            <% end %>
+                        </div>
+                        <% end %>
                     </div>
                 </div>
             </div>
