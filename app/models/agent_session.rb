@@ -1,4 +1,5 @@
 class AgentSession < Authlogic::Session::Base
+
     logout_on_timeout true
 
     def to_key

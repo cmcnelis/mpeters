@@ -1,17 +1,26 @@
 <% content_for :title, "New Policy" %>
 <div class="container">
-    <div class="page-header">
-        <h1>Add Policy</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>New Policy</h3>
+        </div>
+        <div class="panel-body">
+            <%= form_for @policy, :url=>account_policies_path do |f| %>
+            <%= render :partial=>'form', :object=>f %>
+            <% count = 0 %>
+            <%= f.fields_for :vehicles  do |vehicles| %>
+                <div class="row">
+                    <div class="col-md-2">
+                        <h3>Vehicle <%= count += 1 %> </h3>
+                        <hr>
+                    </div>
+                </div>
+                <%= render :partial=>'vehicles/vehicles_mini', :locals=>{:form=>vehicles} %>
+            <% end %>
+
+            <%= f.submit 'Submit', :class=>'btn btn-primary' %>
+            <%= link_to 'Cancel', :back, :class=>'btn btn-primary', :confirm=>"Are you sure?" %>
+            <% end %>
+        </div>
     </div>
 </div>
-
-<%= form_for @policy, :url=>account_policies_path do |f| %>
-    <%= render :partial=>'form', :object=>f %>
-    <%= f.fields_for :vehicles  do |vehicles| %>
-        <%= render :partial=>'vehicles/vehicles_mini', :locals=>{:form=>vehicles} %>
-    <% end %>
-    <div class="container">
-        <%= f.submit 'Submit', :class=>'btn btn-primary' %>
-        <%= link_to 'Cancel', :back, :class=>'btn btn-primary', :confirm=>"Are you sure?" %>
-    </div>
-<% end %>
