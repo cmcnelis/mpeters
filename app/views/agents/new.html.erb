@@ -1,6 +1,6 @@
 <% content_for :title, "Agent Registration" %>
 <div class="container">
-    <%= form_for @agent , :class=>'form-horizontal', :role=>'form', :url=>account_path do |f| %>
+    <%= form_for @agent , :html=>{:class=>'form-horizontal', :role=>'form'}, :url=>account_path do |f| %>
         <%= render :partial => 'form' ,  :object=>f %>
     <% end %>
 </div>
