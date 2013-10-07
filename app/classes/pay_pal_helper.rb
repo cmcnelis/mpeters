@@ -13,11 +13,7 @@ class PayPalHelper
 
     def make_payment
 
-            # PayPal::SDK::REST.set_config(
-            #         :mode => "sandbox", # "sandbox" or "live"
-            #         :client_id => "AaYcMRA8wLvlRTZswDCgn7auLUKW5aMQ-FI05NdvvqLqeFpY_78vInumPpTl",
-            #         :client_secret => "EAnS5hBHkx936SuC0GEcxGWVwBsp6QFzWJsuFGRoox1F_2jQ_8ceH_467ul1")
-
+            # Currently just sending dummy data while under developlment
             # Build Payment object
             @payment = Payment.new({
                 :intent => "sale",
@@ -88,8 +84,6 @@ class PayPalHelper
           Rails.logger.debug "PaymentInfo>>payment.create failure : #{@payment.error}"
           @payment.error  # Error Hash
         end
-
-        # Update Vehicle Transaction
 
     end
 
