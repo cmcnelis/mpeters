@@ -12,6 +12,7 @@ class VehiclesController < ApplicationController
     end
 
     def create
+        logger.debug("#{LOGGER_TAG}create >> #{params.inspect}")
         @policy = Policy.find(params[:policy_id])
         @vehicle = @policy.vehicles.build(vehicle_params)
         logger.debug("VehiclesController::create #{@policy.inspect}")
@@ -93,6 +94,7 @@ class VehiclesController < ApplicationController
                 :color,
                 :deductible,
                 :previous_deductible,
-                :drivers)
+                :drivers,
+                :year)
         end
 end

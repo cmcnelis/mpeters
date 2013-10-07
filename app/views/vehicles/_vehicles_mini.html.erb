@@ -26,7 +26,7 @@
     <div class="form-group">
         <%= form.label :year , :class=>"col-md-2 control-label"%>
         <div class="col-md-10">
-            <%= form.text_field :year, :class=>"form-control" %>
+            <%= select_year(Date.today, {:start_year=>1930, :end_year=>Date.today.year}, {:class=>'form-control'}) %>
         </div>
     </div>
     <div class="form-group">
