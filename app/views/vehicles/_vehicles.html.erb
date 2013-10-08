@@ -12,7 +12,7 @@
     <% @policy.vehicles.each do |v| %>
     <tr>
         <td><%= link_to raw("<span class='glyphicon glyphicon-remove'></span>"), account_policy_vehicle_path(@policy.id, v.id),
-                :method=>:delete, :data=>{:confirm=>"Are you sure you want to remove this policy?"}%>
+                :method=>:delete, :data=>{:confirm=>"Are you sure you want to remove this policy?"}, :class=>'btn btn-xs btn-default'%>
                 <%= link_to v.vin, account_policy_vehicle_path(v.policy_id, v.id) %></td>
         <td><%= v.make %></td>
         <td><%= v.model %></td>
