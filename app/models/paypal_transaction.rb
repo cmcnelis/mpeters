@@ -19,5 +19,5 @@ class PaypalTransaction < ActiveRecord::Base
   validates_presence_of :status, :inclusion=> { in: %w(ACTIVE PENDING CLOSED),
     message: "%{value} is not a valid status."}
 
-  belongs_to :vehicle
+  belongs_to :policy
 end
