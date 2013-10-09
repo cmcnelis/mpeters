@@ -7,7 +7,7 @@
         <th>Make</th>
         <th>Model</th>
         <th>Deductible</th>
-        <th>Coverage</th>
+        <th>Status</th>
     </tr>
     <% @policy.vehicles.each do |v| %>
     <tr>
@@ -17,7 +17,7 @@
         <td><%= v.make %></td>
         <td><%= v.model %></td>
         <td><%= v.deductible %></td>
-        <td> <%= v.is_covered ? "Active" : "Pending" %></td>
+        <td>TODO:StatusContent</td>
     </tr>
     <% end %>
 </table>
