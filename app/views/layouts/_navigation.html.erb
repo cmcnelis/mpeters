@@ -14,15 +14,32 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+              <li>
+                <%= link_to "Account", account_path  %>
+              </li>
+              <li>
+                <%= link_to "Logout", logout_path , :data=>{:confirm=>"You sure?"}  %>
+              </li>
+          </ul>
+            <% else %>
+              <li>
+                <%= link_to "Register", new_account_path %>
+              </li>
+          </ul>
+              <%= form_for  a = AgentSession.new, :html=>{:class=>"navbar-form navbar-right"} do |f|%>
+              <%= show_errors(a) %>
+                <div class="form-group">
+                  <%= f.email_field :email, :placeholder=>"Email", :class=>"form-control input-sm"%>
+                </div>
+                <div class="form-group">
+                  <%= f.password_field :password, :placeholder=>"Password", :class=>"form-control input-sm" %>
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+              </form>
+              <% end %>
+            <% end %>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
