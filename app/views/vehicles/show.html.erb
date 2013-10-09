@@ -6,17 +6,16 @@
             <h3>Vehicle Information
                 <%= link_to "Edit", edit_account_policy_vehicle_path(@vehicle.policy_id, @vehicle.id) , :class=>"btn btn-link" %>
                 <%= link_to "Policy", account_policy_path(@vehicle.policy_id), :class=>"btn btn-link"%>
-                <%= link_to "Billing History",account_policy_vehicle_paypal_transactions_path(@vehicle.policy_id, @vehicle.id), :class=>"btn btn-link" %>
             </h3>
         </div>
         <div class='panel-body'>
             <div class="container">
-                <% logger.debug "Vehicle coverage #{@vehicle.is_covered}" %>
-                <% if !@vehicle.is_covered %>
+                <% logger.debug "Vehicle coverage #{@vehicle.covered?}" %>
+                <% if !@vehicle.covered? %>
                 <div class="row">
                     <div class="span12 alert alert-warning">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Warning!</strong> Vehicle deductible isn't currently covered. <%= link_to "Send Reminder..", notify_path(@vehicle.policy_id, @vehicle.id), :class=>"btn btn-link", :method=>:put %>
+                        <strong>Warning!</strong> Vehicle deductible isn't currently covered. <%= link_to "Send Reminder..", notify_path(@vehicle.policy_id), :class=>"btn btn-link", :method=>:put %>
                     </div>
                 </div>
                 <% end %>

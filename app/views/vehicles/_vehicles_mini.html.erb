@@ -26,10 +26,10 @@
     <div class="form-group">
         <%= form.label :year , :class=>"col-md-2 control-label"%>
         <div class="col-md-10">
-            <% if @vehicle.year %>
+            <%# This is because we are using the same form for new and edit %>
+             <% year = Date.today %>
+            <% unless @vehicle.nil? || @vehicle.year.nil?  %>
                 <% year = @vehicle.year %>
-            <% else %>
-                <% year = Date.today %>
             <% end %>
             <%= select_year(year, {:start_year=>1930, :end_year=>Date.today.year}, {:class=>'form-control', :id=>'vehicle_year', :name=>'vehicle[year]'}) %>
         </div>

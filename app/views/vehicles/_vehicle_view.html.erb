@@ -32,18 +32,18 @@
         <h3>Coverage Information</h3>
     </div>
 </div>
-<% dates = v.dates %>
+
 <div class="row">
     <div class="span4">
         <strong>Start  </strong>
-        <% if dates[:begin] %>
-            <%= dates[:begin].to_s(:long) %>
+        <% if  v.start_date %>
+            <%= v.start_date.to_s(:long) %>
         <% end %>
     </div>
     <div class="span4">
         <strong>Expires </strong>
-        <% if dates[:end] %>
-            <%= dates[:end].to_s(:long) %>
+        <% if v.expr_date %>
+            <%= v.expr_date.to_s(:long) %>
         <% end %>
     </div>
     <div class="span4">

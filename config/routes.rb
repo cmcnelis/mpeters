@@ -9,18 +9,16 @@ Demo::Application.routes.draw do
   post 'logout' => 'agent_sessions#destroy'
   get 'logout' => 'agent_sessions#destroy'
 
-  # get 'account/policies/:policy_id/vehicles/:id/pay' => 'vehicles#pay', :as=>'pay'
-  # post 'account/policies/:policy_id/vehicles/:id/pay' => 'vehicles#transaction'
+  get 'account/policies/:policy_id/pay' => 'policies#pay', :as=>'pay'
+  post 'account/policies/:policy_id/pay' => 'policies#transaction'
 
-  # put 'account/policies/:policy_id/vehicles/:id/notify' => 'vehicles#notify', :as=>'notify'
+  put 'account/policies/:policy_id/notify' => 'policies#notify', :as=>'notify'
 
   resource :agent_sessions
 
   resource :account , :controller=>"agents" do
     resources :policies do
-      resources :vehicles do
-        resources :paypal_transactions
-        end
+      resources :vehicles, :paypal_transactions
       end
   end
 

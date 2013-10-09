@@ -4,11 +4,11 @@ require 'paypal_transaction'
 class PayPalHelper
     include PayPal::SDK::REST
 
-    def initialize(payment_info, vehicle)
+    def initialize(payment_info, policy)
         Rails.logger.debug "Using updated class!!!"
         Rails.logger.debug "Creating PayPalHelper >> #{payment_info.inspect}"
         @payment_info = payment_info
-        @vehicle = vehicle
+        @policy = policy
     end
 
     def make_payment
@@ -38,7 +38,7 @@ class PayPalHelper
                             :item_list => {
                                 :items => [{
                                     :name => "Deductible Coverage",
-                                    :sku => @vehicle.vin,
+                                    :sku => policy.vehicle[0].vin,
                                     :price => @payment_info.amount,
                                     :currency => "USD",
                                     :quantity => 1 }]},
@@ -57,7 +57,7 @@ class PayPalHelper
 
           Rails.logger.debug "PaymentInfo>> Creating Transaction..."
           # TODO: Need to handle proper error handling on this path.
-          @transaction = @vehicle.paypal_transactions.create!(
+          @transaction = @policy.paypal_transactions.create!(
             { :pp_id=> @payment.id,
               :amount =>@payment.transactions.first.amount.total,
               :approved => @payment.state == 'approved' ? true : false,
