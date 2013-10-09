@@ -34,6 +34,6 @@ class Vehicle < ActiveRecord::Base
                 break
             end
          end
-         return {:begin=> s_date, :end=>e_date}
+         return {:begin=>s_date, :end=>e_date}
         end
 end
