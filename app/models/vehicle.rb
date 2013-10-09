@@ -5,6 +5,7 @@ class Vehicle < ActiveRecord::Base
     validates :make, :presence=>true
     validates :model, :presence=>true
     validates :color, :presence=>true
+    validates :year, :presence=>true
 
     belongs_to :policy
 

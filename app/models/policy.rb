@@ -18,6 +18,7 @@ class Policy < ActiveRecord::Base
         attributes['make'].blank? or
         attributes['model'].blank? or
         attributes['color'].blank? or
-        attributes['deductible'].blank?
+        attributes['deductible'].blank? or
+        attributes['year'].blank
     }
 end

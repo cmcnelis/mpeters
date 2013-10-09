@@ -49,6 +49,6 @@ class PoliciesController < ApplicationController
             params.require(:policy).permit(
                 :number,  :first_name, :last_name, :email, :email_confirmation,
                 :address, :city, :state, :zip_code, vehicles_attributes:
-                [ :id, :vin, :make, :model, :color, :deductible, :previous_deductible])
+                [ :id, :vin, :make, :model, :color, :deductible, :previous_deductible, :year])
         end
 end
