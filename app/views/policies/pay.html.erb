@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3>Billing Information</h3>
+        </div>
+        <div class="panel-body">
+            <div class='row'>
+                <div class='col-md-12'>
+                    Securely pay for your deductible coverage.
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <%= show_errors(@payment_info) %>
+                </div>
+            </div>
+<%
+=begin %>
+            <div class="container">
+                <div class='row'>
+
+                    <div class='col-md-3'>
+                        <strong>VIN</strong>
+                        <%= @vehicle.vin %>
+                    </div>
+                    <div class='col-md-3'>
+                        <strong>Make</strong>
+                        <%= @vehicle.make %>
+                    </div>
+                    <div class='col-md-3'>
+                        <strong>Year</strong>
+                        <%= @vehicle.year %>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+            </div>
+<%
+=end %>
+                <%= form_for @payment_info , :url=>pay_path , :html=>{:class=>'form-horizontal'} ,:method=>'post' do |f| %>
+                    <div class='form-group'>
+                        <%= f.label :amount, "Amount $" , :class=>'col-md-2 control-label'%>
+                        <div class='col-md-4'>
+                            <%= f.text_field :amount,  :value=>"10.00", :readonly=>true, :class=>'form-control money'%>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <%= f.label :first_name, 'First Name', :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= f.text_field :first_name, :value=>@policy.first_name, :class=>'form-control' %>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <%= f.label :last_name , 'Last Name', :class=>'control-label col-md-2'%>
+                        <div class='col-md-4'>
+                            <%= f.text_field :last_name,  :value=>@policy.last_name, :class=>'form-control' %>
+                        </div>
+                    </div>
+
+                <div class='form-group'>
+                    <%= f.label :address , :class=>'control-label col-md-2'%>
+                    <div class='col-md-4'>
+                        <%= f.text_field :address, :value=>@policy.address, :class=>'form-control' %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :city, :class=>'control-label col-md-2' %>
+                    <div class='col-md-4'>
+                        <%= f.text_field :city, :value=>@policy.city, :class=>'form-control' %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :state, :class=>'control-label col-md-2' %>
+                    <div class='col-md-4'>
+                        <%= f.text_field :state, :value=>@policy.state, :class=>'form-control' %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :zip_code, 'Zip Code', :class=>'control-label col-md-2' %>
+                    <div class='col-md-4'>
+                        <%= f.text_field :zip_code , :value=>@policy.zip_code, :class=>'form-control' %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :card_type, 'Card Type', :class=>'control-label col-md-2' %>
+                    <div class='col-md-4'>
+                        <%= f.select :card_type, [['Visa', 'visa'], ['MasterCard', 'mastercard']], {},  {:class=>'form-control' }%>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :card_number , 'Card Number',  :class=>'control-label col-md-2'%>
+                    <div class='col-md-4'>
+                        <%= f.text_field :card_number, :class=>'form-control' %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :cvv2, 'CVV2', :class=>'control-label col-md-2' %>
+                    <div class='col-md-1'>
+                        <%= f.text_field :cvv2, :class=>'form-control'%>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :exp, "Expiration", :class=>'control-label col-md-2' %>
+                    <div class='col-md-4'>
+                        <%= f.text_field :exp , :placeholder=> "MM/YY", :class=>'form-control' %>
+                    </div>
+                </div>
+                <%= submit_tag 'Pay Now', :class=>'btn btn-default col-md-offset-2' %>
+                <% end %>
+
+        </div>
+        </div>
+    </div>
+
+
+

@@ -15,8 +15,10 @@ class VehiclesController < ApplicationController
         logger.debug("#{LOGGER_TAG}create >> #{params.inspect}")
         @policy = Policy.find(params[:policy_id])
         @vehicle = @policy.vehicles.build(vehicle_params)
-        logger.debug("VehiclesController::create #{@policy.inspect}")
-        logger.debug("VehiclesController::create #{@vehicle.inspect}")
+        # This is where we could check to make sure we get at least
+        # one vehicle defined.
+        logger.debug("#{LOGGER_TAG}create #{@policy.inspect}")
+        logger.debug("#{LOGGER_TAG}reate #{@vehicle.inspect}")
 
         if @vehicle.save
             flash[:notice] = "Successfully added a new vechicle."
@@ -46,6 +48,7 @@ class VehiclesController < ApplicationController
     end
 
     def destroy
+        logger.debug "#{LOGGER_TAG}destroy"
         @vehicle = Vehicle.find(params[:id])
         if @vehicle.destroy
             flash[:notice] = "Successfully removed vehicle."

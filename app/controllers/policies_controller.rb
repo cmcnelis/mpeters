@@ -1,6 +1,6 @@
 class PoliciesController < ApplicationController
 
-    before_filter :require_user
+    before_filter :require_no_user, :only=>:pay
 
     def new
         @policy = Policy.new
@@ -55,9 +55,8 @@ class PoliciesController < ApplicationController
 
     def pay
         logger.debug("Pay<< params = #{params.inspect}")
-        @vehicle = Vehicle.find(params[:id])
+        @policy = Policy.find(params[:policy_id])
         @payment_info = PaymentInfo.new
-        logger.debug("Pay >> vehicle = #{@vehicle.inspect}")
     end
 
     def transaction
