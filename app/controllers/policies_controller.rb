@@ -12,6 +12,7 @@ class PoliciesController < ApplicationController
         @policy = @agent.policies.build(policy_params)
         if @policy.save
             flash[:notice] = "Sucessfully created new policy."
+            ClientMailer.notify_policy(@policy, request).deliver
             redirect_to account_url
         else
             render :action => 'new'
@@ -49,6 +50,6 @@ class PoliciesController < ApplicationController
             params.require(:policy).permit(
                 :number,  :first_name, :last_name, :email, :email_confirmation,
                 :address, :city, :state, :zip_code, vehicles_attributes:
-                [ :id, :vin, :make, :model, :color, :deductible, :previous_deductible, :year])
+                [ :id, :vin, :make, :model, :color, :deductible, :previous_deductible, :year, :drivers])
         end
 end

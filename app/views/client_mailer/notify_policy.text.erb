@@ -1,0 +1,11 @@
+This is the email template for users to pay for their deductible coverage.
+
+We can put cool things like the following:
+
+Vehicle Information:
+
+
+To initiate your coverage for the above vehicle use the link below to securely
+pay for your subscribtion.
+
+<%= pay_url(@policy.id, :host=>@request.host, :port=>@request.port) %>

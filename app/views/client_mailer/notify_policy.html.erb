@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8'
+    http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+        Welcome<%= @policy.first_name %>,
+            Your insurance agent <%= "#{@policy.agent.first_name}
+            #{@policy.agent.last_name} " %> has signed you up for
+            deductible coverage.<br/>
+            Please review the information below and if you would like to
+            insure your deductible over the life of your auto insurance
+            policy, follow the link below to begin your deductible coverage.
+    </p>
+    <p>
+        Bunch of logic goes here......
+    </p>
+    <p>
+        To initiate your coverage for the above vehicle/s use the link below to
+        securely pay for your subscription. <br><br>
+      </p>
+        <%= link_to  'Pay Here' , pay_url(@policy.id, :host=>@request.host, :port=>@request.port) %>
+ </body>
+</html>
