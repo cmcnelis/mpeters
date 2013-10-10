@@ -10,6 +10,6 @@ class ClientMailer < ActionMailer::Base
     logger.debug "ClientMailer::notify_policy<<< .. policy = #{policy.inspect}"
     @policy = policy
     @request = request
-    mail(:to=>@policy.email, :subjet=>'New Policy Created For You')
+    mail(:to=>@policy.email, :subject=>'New Policy Created For You')
   end
 end

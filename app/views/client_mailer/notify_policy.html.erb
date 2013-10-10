@@ -6,7 +6,7 @@
   </head>
   <body>
     <p>
-        Welcome<%= @policy.first_name %>,
+        Welcome <%= "#{@policy.first_name} #{@policy.last_name}" %>,
             Your insurance agent <%= "#{@policy.agent.first_name}
             #{@policy.agent.last_name} " %> has signed you up for
             deductible coverage.<br/>
