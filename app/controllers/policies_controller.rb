@@ -18,6 +18,7 @@ class PoliciesController < ApplicationController
             # It is not mandatory to add at least one vehicle during registration, but I
             # think it probably should be.
             unless @policy.vehicles.nil? || @policy.vehicles.count == 0
+                logger.debug 'PoliciesController::Got some vehicles, sending out an email.'
                 ClientMailer.notify_policy(@policy, request).deliver
             end
             redirect_to account_url
@@ -50,6 +51,37 @@ class PoliciesController < ApplicationController
             flash[:notice] = "Successfully removed policy."
         end
         redirect_to account_url
+    end
+
+    def pay
+        logger.debug("Pay<< params = #{params.inspect}")
+        @vehicle = Vehicle.find(params[:id])
+        @payment_info = PaymentInfo.new
+        logger.debug("Pay >> vehicle = #{@vehicle.inspect}")
+    end
+
+    def transaction
+        logger.debug('Yup we are paying now!!!')
+        logger.debug("Params >> #{params.inspect}")
+        @vehicle = Vehicle.find(params[:id])
+        @payment_info = PaymentInfo.new(params[:payment_info])
+        if @payment_info.valid?
+            logger.debug("Pooo")
+            @paypal = PayPalHelper.new(@payment_info, @vehicle)
+            @paypal.make_payment
+            redirect_to root_path
+        else
+            render :action=>'pay'
+        end
+    end
+
+    def notify
+        logger.debug "VehicleController>>notify <<<"
+        @vehicle = Vehicle.find(params[:id])
+        mail = ClientMailer.notify_vehicle(@vehicle, request).deliver
+        logger.debug "sent mail #{mail.inspect}"
+        flash[:notice] = "Sent an email reminder to the policy holder."
+        redirect_to account_policy_vehicle_path(params[:policy_id], params[:id])
     end
 
     private

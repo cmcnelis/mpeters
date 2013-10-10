@@ -54,38 +54,6 @@ class VehiclesController < ApplicationController
         redirect_to account_policy_path(params[:policy_id])
     end
 
-    def pay
-        logger.debug("Pay<< params = #{params.inspect}")
-        @vehicle = Vehicle.find(params[:id])
-        @payment_info = PaymentInfo.new
-        logger.debug("Pay >> vehicle = #{@vehicle.inspect}")
-    end
-
-    def transaction
-        logger.debug('Yup we are paying now!!!')
-        logger.debug("Params >> #{params.inspect}")
-        @vehicle = Vehicle.find(params[:id])
-        @payment_info = PaymentInfo.new(params[:payment_info])
-        if @payment_info.valid?
-            logger.debug("Pooo")
-            @paypal = PayPalHelper.new(@payment_info, @vehicle)
-            @paypal.make_payment
-            redirect_to root_path
-        else
-            render :action=>'pay'
-        end
-
-    end
-
-    def notify
-        logger.debug "VehicleController>>notify <<<"
-        @vehicle = Vehicle.find(params[:id])
-        mail = ClientMailer.notify_vehicle(@vehicle, request).deliver
-        logger.debug "sent mail #{mail.inspect}"
-        flash[:notice] = "Sent an email reminder to the policy holder."
-        redirect_to account_policy_vehicle_path(params[:policy_id], params[:id])
-    end
-
     private
         def vehicle_params
             params.require(:vehicle).permit(:vin,
