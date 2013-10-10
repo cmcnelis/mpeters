@@ -12,7 +12,14 @@ class PoliciesController < ApplicationController
         @policy = @agent.policies.build(policy_params)
         if @policy.save
             flash[:notice] = "Sucessfully created new policy."
-            ClientMailer.notify_policy(@policy, request).deliver
+            # This is where it gets wierd. We need to send out and email
+            # if  we have vehicles since the policy doesn't contain any information
+            # to build a payment transaction off of.
+            # It is not mandatory to add at least one vehicle during registration, but I
+            # think it probably should be.
+            unless @policy.vehicles.nil? || @policy.vehicles.count == 0
+                ClientMailer.notify_policy(@policy, request).deliver
+            end
             redirect_to account_url
         else
             render :action => 'new'
