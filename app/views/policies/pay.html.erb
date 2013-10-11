@@ -53,7 +53,7 @@
                     <div class='form-group'>
                         <%= f.label :amount, "Amount $" , :class=>'col-md-2 control-label'%>
                         <div class='col-md-4'>
-                            <%= f.text_field :amount,  :value=>'%.2f' % total, :readonly=>true, :class=>'form-control money'%>
+                            <%= f.text_field :amount,  :value=>'%.2f' % (total + (total * 0.08)), :readonly=>true, :class=>'form-control money'%>
                         </div>
                         <div class='col-md-2'>
                             *Tax Included

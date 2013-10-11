@@ -62,16 +62,16 @@ class PoliciesController < ApplicationController
     def transaction
         logger.debug('Yup we are paying now!!!')
         logger.debug("Params >> #{params.inspect}")
-        @vehicle = Vehicle.find(params[:id])
-        @payment_info = PaymentInfo.new(params[:payment_info])
-        if @payment_info.valid?
-            logger.debug("Pooo")
-            @paypal = PayPalHelper.new(@payment_info, @vehicle)
-            @paypal.make_payment
-            redirect_to root_path
-        else
-            render :action=>'pay'
-        end
+        @policy = Policy.find(params[:policy_id])
+        @payment_info = PaymetInfo.new(params[:payment_info], @policy)
+        # if @payment_info.valid?
+        #     logger.debug("Pooo")
+        #     @paypal = PayPalHelper.new(@payment_info, @vehicle)
+        #     @paypal.make_payment
+        #     redirect_to root_path
+        # else
+        #     render :action=>'pay'
+        # end
     end
 
     def notify
