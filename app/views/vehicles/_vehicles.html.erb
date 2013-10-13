@@ -17,7 +17,11 @@
         <td><%= v.make %></td>
         <td><%= v.model %></td>
         <td><%= v.deductible %></td>
-        <td>TODO:StatusContent</td>
+        <% if v.covered? %>
+            <td>OK</td>
+        <% else %>
+            <td>Needs Attention</td>
+        <% end %>
     </tr>
     <% end %>
 </table>
