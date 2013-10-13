@@ -13,6 +13,7 @@
                 <tr>
                     <th>VIN</th>
                     <th>Make</th>
+                    <th>Expires</th>
                     <th>Deductible</th>
                     <th>Coverage</th>
                 </tr>
@@ -21,12 +22,14 @@
                         <tr>
                             <td><%= v.vin %></td>
                             <td><%= v.make %></td>
+                            <td><%= v.expr_date ? v.expr_date : 'Not Activated' %>
                             <td>$ <%= '%.2f' % v.deductible %></td>
                             <td class='text-align-right'>$ <%= '%.2f' % (v.cost) %> </td>
                         </tr>
                 <% end %>
 
                 <tr>
+                    <td> </td>
                     <td> </td>
                     <td> </td>
                     <td>Total</td>
