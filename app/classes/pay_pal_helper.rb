@@ -5,7 +5,6 @@ class PayPalHelper
     include PayPal::SDK::REST
 
     def initialize(payment_info, policy)
-        Rails.logger.debug "Using updated class!!!"
         Rails.logger.debug "Creating PayPalHelper >> #{payment_info.inspect}"
         @payment_info = payment_info
         @policy = policy
@@ -80,6 +79,7 @@ class PayPalHelper
            end
 
            Rails.logger.debug "PaymentInfo >> Transaction created...."
+           @transaction
        else
           Rails.logger.debug "PaymentInfo>>payment.create failure : #{@payment.error}"
           @payment.error  # Error Hash

@@ -20,4 +20,5 @@ class PaypalTransaction < ActiveRecord::Base
     message: "%{value} is not a valid status."}
 
   belongs_to :policy
+
 end

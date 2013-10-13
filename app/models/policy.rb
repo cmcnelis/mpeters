@@ -14,6 +14,7 @@ class Policy < ActiveRecord::Base
     belongs_to :agent
     has_many :vehicles, dependent: :destroy
     has_many :paypal_transactions
+
     accepts_nested_attributes_for :vehicles, reject_if: lambda {
         |attributes| attributes['vin'].blank? or
         attributes['make'].blank? or
