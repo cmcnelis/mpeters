@@ -1,7 +1,7 @@
 class PaypalTransactionsController < ApplicationController
   def index
-    @vehicle = Vehicle.find(params[:vehicle_id])
-    @transactions = @vehicle.paypal_transactions
+    @policy = Policy.find(params[:policy_id])
+    @transactions = @policy.paypal_transactions
   end
 
 

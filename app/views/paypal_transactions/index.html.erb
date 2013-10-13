@@ -2,8 +2,8 @@
     <div class='panel panel-info'>
         <div class='panel-heading'>
             <h3>
-                Billing History - <%= @vehicle.vin %>
-                <%= link_to 'Back', account_policy_vehicle_path(@vehicle.policy.id, @vehicle.id) , :class=>'btn btn-link'%>
+                Billing History - <%= @policy.id %>
+                <%= link_to 'Back', account_policy_path(@policy.id) , :class=>'btn btn-link'%>
             </h3>
         </div>
         <div class='panel-body'>

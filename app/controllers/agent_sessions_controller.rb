@@ -9,7 +9,7 @@ class AgentSessionsController < ApplicationController
   def create
     @agent_session = AgentSession.new(params[:agent_session])
     if @agent_session.save
-      redirect_back_or_default account_path
+      redirect account_path
     else
       render :action => :new
     end

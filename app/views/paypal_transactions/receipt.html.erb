@@ -1,35 +1,10 @@
 <div class='container'>
-    <div class='page-header'>
-    <h3>Reciept</h3>
+    <div class='panel panel-success'>
+        <div class='panel-heading'>
+            <h3>Transaction Complete!</h3>
+        </div>
+        <div class='panel-body'>
+            <p>Thank you for your payment of $<%= @payment_info.amount %>.  For your records we have mailed a detailed receipt to your email address: <%= @policy.email %></p>
+        </div>
+    </div>
 </div>
-</div>
-
-<div class='container'>
-    <p>Thank You  for your payment. A copy of this receipt has been emailed to your email address.</p>
-<%= form_for @payment_info, :url=>:root, :html=>{:class=>'form-horizontal'} do |p| %>
-<div class="form-group">
-    <%= p.label :first_name, 'First Name', :class=>'col-lg-2 control-label' %>
-    <div class="col-lg-10">
-      <p class='form-control-static'><%= @payment_info.first_name %> </p>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= p.label :last_name, 'Last Name', :class=>'col-lg-2 control-label' %>
-    <div class="col-lg-10">
-      <p class='form-control-static'><%= @payment_info.last_name %> </p>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= p.label :card_number, 'Card Number', :class=>'col-lg-2 control-label' %>
-    <div class="col-lg-10">
-      <p class='form-control-static'><%= @payment_info.card_number%> </p>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= p.label :amount, 'Amount', :class=>'col-lg-2 control-label' %>
-    <div class="col-lg-10">
-      <p class='form-control-static'>$<%= @payment_info.amount %> </p>
-    </div>
-  </div>
-
-<% end %>
