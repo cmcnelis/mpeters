@@ -8,6 +8,7 @@
                 The following vehicles are due for deductible coverage activation. Use the form below to securely pay for another year of deductible coverage.
             </p>
             <br/>
+            <% if @policy.not_covered.count > 0 %>
             <table id='vehicle_table' class='table'>
                 <tr>
                     <th>VIN</th>
@@ -15,28 +16,24 @@
                     <th>Deductible</th>
                     <th>Coverage</th>
                 </tr>
-                <% total = 0 %>
-                <%# Move this to a method in policy before you check this in %>
-                <%  @policy.vehicles.each do |v| %>
-                    <% if !v.covered? %>
-                        <% total += v.deductible *  0.10 %>
+
+                <%  @policy.not_covered.each do |v| %>
                         <tr>
                             <td><%= v.vin %></td>
                             <td><%= v.make %></td>
                             <td>$ <%= '%.2f' % v.deductible %></td>
-                            <td class='text-align-right'>$ <%= '%.2f' % (v.deductible * 0.10) %> </td>
+                            <td class='text-align-right'>$ <%= '%.2f' % (v.cost) %> </td>
                         </tr>
-                    <% end %>
                 <% end %>
-                <% if total > 0 %>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td>Total</td>
-                        <td>$ <%= '%.2f' % total %></td>
-                    </tr>
-                <% end %>
+
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td>Total</td>
+                    <td>$ <%= '%.2f' % @policy.cost %></td>
+                </tr>
             </table>
+            <% end %>
         </div>
     </div>
     <div class="panel panel-info">
@@ -53,7 +50,7 @@
                     <div class='form-group'>
                         <%= f.label :amount, "Amount $" , :class=>'col-md-2 control-label'%>
                         <div class='col-md-4'>
-                            <%= f.text_field :amount,  :value=>'%.2f' % (total + (total * 0.08)), :readonly=>true, :class=>'form-control money'%>
+                            <%= f.text_field :amount,  :value=>'%.2f' % (@policy.cost + (@policy.cost * 0.08)), :readonly=>true, :class=>'form-control money'%>
                         </div>
                         <div class='col-md-2'>
                             *Tax Included

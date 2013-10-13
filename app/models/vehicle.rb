@@ -1,6 +1,9 @@
 require 'paypal_transaction'
 
 class Vehicle < ActiveRecord::Base
+
+    RATE = 0.10
+
     validates :vin, :presence=>true
     validates :make, :presence=>true
     validates :model, :presence=>true
@@ -16,5 +19,10 @@ class Vehicle < ActiveRecord::Base
             return (expr_date<=>Date.today > 0 ) ? true : false
         end
         false
+    end
+
+    # Returns the cost of coverage for the vehicle
+    def cost
+        deductible * RATE
     end
 end
