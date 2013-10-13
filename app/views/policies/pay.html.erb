@@ -9,33 +9,33 @@
             </p>
             <br/>
             <% if @policy.not_covered.count > 0 %>
-            <table id='vehicle_table' class='table'>
-                <tr>
-                    <th>VIN</th>
-                    <th>Make</th>
-                    <th>Expires</th>
-                    <th>Deductible</th>
-                    <th>Coverage</th>
-                </tr>
+                <table id='vehicle_table' class='table'>
+                    <tr>
+                        <th>VIN</th>
+                        <th>Make</th>
+                        <th>Expires</th>
+                        <th>Deductible</th>
+                        <th>Coverage</th>
+                    </tr>
 
-                <%  @policy.not_covered.each do |v| %>
-                        <tr>
-                            <td><%= v.vin %></td>
-                            <td><%= v.make %></td>
-                            <td><%= v.expr_date ? v.expr_date : 'Not Activated' %>
-                            <td>$ <%= '%.2f' % v.deductible %></td>
-                            <td class='text-align-right'>$ <%= '%.2f' % (v.cost) %> </td>
-                        </tr>
-                <% end %>
+                    <%  @policy.not_covered.each do |v| %>
+                            <tr>
+                                <td><%= v.vin %></td>
+                                <td><%= v.make %></td>
+                                <td><%= v.expr_date ? v.expr_date : 'Not Activated' %>
+                                <td>$ <%= '%.2f' % v.deductible %></td>
+                                <td class='text-align-right'>$ <%= '%.2f' % (v.cost) %> </td>
+                            </tr>
+                    <% end %>
 
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td>Total</td>
-                    <td>$ <%= '%.2f' % @policy.cost %></td>
-                </tr>
-            </table>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>Total</td>
+                        <td>$ <%= '%.2f' % @policy.cost %></td>
+                    </tr>
+                </table>
             <% end %>
         </div>
     </div>

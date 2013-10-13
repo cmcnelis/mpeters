@@ -60,27 +60,27 @@ class PoliciesController < ApplicationController
     end
 
     def transaction
-        logger.debug('Yup we are paying now!!!')
-        logger.debug("Params >> #{params.inspect}")
+        logger.debug("PolicyController::<< Params= #{params.inspect}")
         @policy = Policy.find(params[:policy_id])
-        @payment_info = PaymetInfo.new(params[:payment_info], @policy)
-        # if @payment_info.valid?
-        #     logger.debug("Pooo")
-        #     @paypal = PayPalHelper.new(@payment_info, @vehicle)
+        @payment_info = PaymentInfo.new(params[:payment_info])
+        if @payment_info.valid?
+            logger.debug("PolicyController::payment_info is valid.")
+           @paypal = PayPalHelper.new(@payment_info, @policy)
         #     @paypal.make_payment
-        #     redirect_to root_path
-        # else
-        #     render :action=>'pay'
-        # end
+           render 'paypal_transactions/receipt'
+        else
+            render :action=>'pay'
+        end
+
     end
 
     def notify
-        logger.debug "VehicleController>>notify <<<"
+        logger.debug "PolicyController::notify <<<"
         @vehicle = Vehicle.find(params[:id])
         mail = ClientMailer.notify_vehicle(@vehicle, request).deliver
         logger.debug "sent mail #{mail.inspect}"
         flash[:notice] = "Sent an email reminder to the policy holder."
-        redirect_to account_policy_vehicle_path(params[:policy_id], params[:id])
+        redirect_to account_policy_path(params[:policy_id])
     end
 
     private
