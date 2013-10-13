@@ -1,6 +1,18 @@
 
 <div class="row">
 <%if @policy.vehicles.count > 0 %>
+    <% if @policy.not_covered.count > 0 %>
+        <div class="container">
+            <div class="row">
+                <div class="span12 alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning!</strong> One or more deductibles are not currently covered. <%= link_to "Send Reminder..", notify_path(@vehicle.policy_id), :class=>"btn btn-link", :method=>:put %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
+
 <table class="table">
     <tr>
         <th>Vin</th>
@@ -16,7 +28,7 @@
                 <%= link_to v.vin, account_policy_vehicle_path(v.policy_id, v.id) %></td>
         <td><%= v.make %></td>
         <td><%= v.model %></td>
-        <td><%= v.deductible %></td>
+        <td><%= "$ #{'%.2f' % v.deductible}" %></td>
         <% if v.covered? %>
             <td>OK</td>
         <% else %>
