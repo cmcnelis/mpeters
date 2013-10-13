@@ -16,7 +16,7 @@ class Vehicle < ActiveRecord::Base
     # end_date is nil or before Date.today.
     def covered?
         unless expr_date.nil?
-            return (expr_date<=>Date.today > 0 ) ? true : false
+            return ((expr_date<=>Date.today )> 0 ) ? true : false
         end
         false
     end
