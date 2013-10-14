@@ -12,17 +12,15 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class='col-md-3'>
+                <div class='col-md-4'>
                     <strong>Holder </strong><span></span>
                     <%= "#{@policy.first_name} #{@policy.last_name}" %>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <strong>Email </strong>
                     <%= @policy.email %>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <strong>Address </strong>
                     <%= "#{@policy.address}, #{@policy.city}, #{@policy.state}, #{@policy.zip_code}" %>
                 </div>
