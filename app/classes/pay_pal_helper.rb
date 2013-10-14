@@ -16,7 +16,7 @@ class PayPalHelper
     def make_payment
 
             @vehicles = @policy.not_covered
-            if vehicles.count > 0
+            if @vehicles.count > 0
               _make_payment
             else
               Rails.logger.debug "Nothing to do..account is up to date!"
@@ -87,8 +87,8 @@ class PayPalHelper
               :state=>@payment_info.state,
               :zip_code=>@payment_info.zip_code,
               :card_number=>credit_card.number,
-              :exp_month =>@payment_info.expire_month,
-              :exp_year =>@payment_info.expire_year,
+              :expr_month =>@payment_info.expr_month,
+              :expr_year =>@payment_info.expr_year,
               :first_name=>@payment_info.first_name,
               :last_name=>@payment_info.last_name,
               :card_type=>@payment_info.card_type,
@@ -110,8 +110,8 @@ class PayPalHelper
                     :credit_card => {
                         :type => @payment_info.card_type,
                         :number => @payment_info.card_number,
-                        :expire_month => @payment_info.expire_month,
-                        :expire_year => @payment_info.expire_year,
+                        :expire_month => @payment_info.expr_month,
+                        :expire_year => @payment_info.expr_year,
                         :cvv2 => @payment_info.cvv2,
                         :first_name => @payment_info.first_name,
                         :last_name => @payment_info.last_name,
@@ -138,6 +138,7 @@ class PayPalHelper
 
           Rails.logger.debug "PaymentInfo>> Creating Transaction..."
 
+          # Record the payment for our local copy.
           _build_paypal_transaction
 
           if @transaction.status == PaypalTransaction::ACTIVE
