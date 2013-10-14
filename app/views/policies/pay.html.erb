@@ -115,9 +115,15 @@
                     </div>
                 </div>
                 <div class='form-group'>
-                    <%= f.label :exp, "Expiration", :class=>'control-label col-md-2' %>
+                    <%= f.label :expr_month , :class=>'control-label col-md-2' %>
                     <div class='col-md-4'>
-                        <%= f.text_field :exp , :placeholder=> "MM/YY", :class=>'form-control' %>
+                        <%= select_month(Date.today, {:use_month_numbers=>true}, {:class=>'form-control', :id=>'payment_info_expr_month', :name=>'payment_info[expr_month]'}) %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :expr_year , :class=>'control-label col-md-2' %>
+                    <div class='col-md-4'>
+                        <%= select_year(Date.today, {:end_year=>Date.today.year + 10}, {:class=>'form-control', :id=>'payment_info_expr_year', :name=>'payment_info[expr_year]'}) %>
                     </div>
                 </div>
                 <%= submit_tag 'Pay Now', :class=>'btn btn-default col-md-offset-2' %>

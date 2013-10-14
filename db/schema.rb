@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009193355) do
+ActiveRecord::Schema.define(version: 20131014173036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20131009193355) do
     t.string   "card_number"
     t.string   "card_type"
     t.string   "csc"
-    t.string   "exp"
     t.string   "first_name"
     t.string   "last_name"
     t.datetime "created_at"
@@ -59,6 +58,9 @@ ActiveRecord::Schema.define(version: 20131009193355) do
     t.string   "status"
     t.string   "state"
     t.integer  "policy_id"
+    t.text     "vehicle_info"
+    t.string   "expr_month"
+    t.string   "expr_year"
   end
 
   create_table "policies", force: true do |t|

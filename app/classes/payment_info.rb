@@ -4,7 +4,7 @@ class PaymentInfo
     extend ActiveModel::Naming
 
     attr_accessor :first_name, :last_name, :address,
-    :city, :zip_code, :card_number, :cvv2, :card_type, :amount, :state, :exp
+    :city, :zip_code, :card_number, :cvv2, :card_type, :amount, :state, :expr_year, :expr_month
 
     validates_presence_of :first_name
     validates_presence_of :last_name
@@ -16,6 +16,8 @@ class PaymentInfo
     validates_presence_of :cvv2
     validates_presence_of :card_type
     validates_presence_of :amount
+    validates_presence_of :expr_month
+    validates_presence_of :expr_year
 
 
     def initialize(hash={})
