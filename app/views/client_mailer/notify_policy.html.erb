@@ -14,9 +14,15 @@
             insure your deductible over the life of your auto insurance
             policy, follow the link below to begin your deductible coverage.<br/><br/>
     </p>
-    <p>
-        Bunch of logic goes here......<br/><br/>
-    </p>
+
+        <% @policy.not_covered.each do |v| %>
+            <p><strong>VIN </strong><%= v.vin %></p>
+            <p><strong>Make </strong><%= v.make %></p>
+            <p><strong>Model </strong><%= v.year %></p>
+            <p><strong>Year </strong><%= v.year %></p>
+            <br/><br/>
+        <% end %>
+    <br/>
     <p>
         To initiate your coverage for the above vehicle/s use the link below to
         securely pay for your subscription. <br><br>
