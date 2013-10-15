@@ -15,7 +15,7 @@
                         <hr>
                     </div>
                 </div>
-                <%= render :partial=>'vehicles/vehicles_mini', :locals=>{:form=>vehicles} %>
+                <%= render :partial=>'vehicles/vehicles_mini', :locals=>{:form=>vehicles, :selectid=>"policy[vehicles_attributes][#{count-1}][year]"} %>
             <% end %>
 
             <%= f.submit 'Submit', :class=>'btn btn-default btn-small' %>

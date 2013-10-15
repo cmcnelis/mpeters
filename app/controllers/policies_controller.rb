@@ -4,24 +4,27 @@ class PoliciesController < ApplicationController
 
     def new
         @policy = Policy.new
-        2.times {@policy.vehicles.build }
+        2.times{@policy.vehicles.build}
     end
 
     def create
         @agent = current_user
         @policy = @agent.policies.build(policy_params)
-        if @policy.save
-            flash[:notice] = "Sucessfully created new policy."
-            # This is where it gets wierd. We need to send out and email
-            # if  we have vehicles since the policy doesn't contain any information
-            # to build a payment transaction off of.
-            # It is not mandatory to add at least one vehicle during registration, but I
-            # think it probably should be.
-            unless @policy.vehicles.nil? || @policy.vehicles.count == 0
-                logger.debug 'PoliciesController::Got some vehicles, sending out an email.'
-                ClientMailer.notify_policy(@policy, request).deliver
+        if @policy.valid?
+            if @policy.save
+                flash[:notice] = "Sucessfully created new policy."
+                logger.debug "Policy Errors.. #{@policy.errors.inspect}"
+                # This is where it gets wierd. We need to send out and email
+                # if  we have vehicles since the policy doesn't contain any information
+                # to build a payment transaction off of.
+                # It is not mandatory to add at least one vehicle during registration, but I
+                # think it probably should be.
+                unless @policy.vehicles.nil? || @policy.vehicles.count == 0
+                    logger.debug 'PoliciesController::Got some vehicles, sending out an email.'
+                    ClientMailer.notify_policy(@policy, request).deliver
+                end
+                redirect_to account_url
             end
-            redirect_to account_url
         else
             render :action => 'new'
         end

@@ -11,18 +11,20 @@ class Policy < ActiveRecord::Base
     validates :email, :presence=>true, :confirmation=>true
     validates :email_confirmation, :presence=>true
 
+    validates_associated :vehicles
+
     belongs_to :agent
     has_many :vehicles, dependent: :destroy
     has_many :paypal_transactions
 
-    accepts_nested_attributes_for :vehicles, reject_if: lambda {
-        |attributes| attributes['vin'].blank? or
-        attributes['make'].blank? or
-        attributes['model'].blank? or
-        attributes['color'].blank? or
-        attributes['deductible'].blank? or
-        attributes['year'].blank?
-    }
+    accepts_nested_attributes_for :vehicles, :reject_if=> proc {
+     |attributes| attributes['vin'].blank? and
+            attributes['make'].blank? and
+            attributes['model'].blank? and
+            attributes['color'].blank?  and
+            attributes['deductible'].blank? and
+            attributes['year'].blank? }
+
 
     #Returns true if all the vehicles within the policy are currently covered,
     #else returns false

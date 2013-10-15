@@ -2,6 +2,8 @@ require 'paypal_transaction'
 
 class Vehicle < ActiveRecord::Base
 
+    # Flat percentage rate applied to deductible.
+    # Not sure what we want for this value.
     RATE = 0.10
 
     validates :vin, :presence=>true
@@ -9,6 +11,7 @@ class Vehicle < ActiveRecord::Base
     validates :model, :presence=>true
     validates :color, :presence=>true
     validates :year, :presence=>true
+    validates :deductible, :presence=>true
 
     belongs_to :policy
 
