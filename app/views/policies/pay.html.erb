@@ -116,22 +116,24 @@
                             <%= f.text_field :zip_code , :value=>@policy.zip_code, :class=>'form-control' %>
                         </div>
                     </div>
+
+                    <%# Credit Card Info is hard-coded for right now %>
                     <div class='form-group'>
                         <%= f.label :card_type, 'Card Type', :class=>'control-label col-md-2' %>
                         <div class='col-md-4'>
-                            <%= f.select :card_type, [['Visa', 'visa'], ['MasterCard', 'mastercard']], {},  {:class=>'form-control' }%>
+                            <%= f.select :card_type, [['Visa', 'visa'], ['MasterCard', 'mastercard']], {},  {:class=>'form-control' }, :value=>'MasterCard' , :read_only=>true%>
                         </div>
                     </div>
                     <div class='form-group'>
                         <%= f.label :card_number , 'Card Number',  :class=>'control-label col-md-2'%>
                         <div class='col-md-4'>
-                            <%= f.text_field :card_number, :class=>'form-control' %>
+                            <%= f.text_field :card_number, :readonly=>:true, :value=>'5500005555555559', :class=>'form-control' %>
                         </div>
                     </div>
                     <div class='form-group'>
                         <%= f.label :cvv2, 'CVV2', :class=>'control-label col-md-2' %>
                         <div class='col-md-1'>
-                            <%= f.text_field :cvv2, :class=>'form-control'%>
+                            <%= f.text_field :cvv2, :readonly=>true, :value=>'111', :class=>'form-control'%>
                         </div>
                     </div>
                     <div class='form-group'>

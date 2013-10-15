@@ -21,7 +21,7 @@ class Policy < ActiveRecord::Base
         attributes['model'].blank? or
         attributes['color'].blank? or
         attributes['deductible'].blank? or
-        attributes['year'].blank
+        attributes['year'].blank?
     }
 
     #Returns true if all the vehicles within the policy are currently covered,
