@@ -45,7 +45,7 @@ class PayPalHelper
         @vehicles.each do |v|
           items << Item.new(:name => 'Deductible Coverage',
                       :sku => v.vin,
-                      :price=> '%.2f' % v.cost,
+                      :price=> '%.2f' % (v.cost + (v.cost * 0.08)),
                       :currency=>"USD",
                       :quantity=>1)
           Rails.logger.debug "PaypalHelper::_build_transactions::items   #{items.inspect}"
@@ -87,13 +87,13 @@ class PayPalHelper
          # TODO: Need to handle proper error handling on this path.
           @transaction = @policy.paypal_transactions.create!(
             { :pp_id=> @payment.id,
-              :amount =>@paymet_info.amount,
+              :amount =>@payment_info.amount,
               :approved => @payment.state == 'approved' ? true : false,
               :address => @payment_info.address,
               :city=>@payment_info.city,
               :state=>@payment_info.state,
               :zip_code=>@payment_info.zip_code,
-              :card_number=>credit_card.number,
+              :card_number=>@payment.payer.funding_instruments.first.credit_card.number,
               :expr_month =>@payment_info.expr_month,
               :expr_year =>@payment_info.expr_year,
               :first_name=>@payment_info.first_name,
@@ -146,9 +146,6 @@ class PayPalHelper
         # Create Payment and return the status(true or false
         if @payment.create
             Rails.logger.debug "PaymentInfo>>payment.create success : #{@payment.inspect}"
-            # @payment.id     # Payment Id
-            credit_card = @payment.payer.funding_instruments.first.credit_card
-
             Rails.logger.debug "PaymentInfo>> Creating Transaction..."
 
             # Record the payment for our local copy.

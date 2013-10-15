@@ -4,147 +4,155 @@
             <h3>Deductible Coverage</h3>
         </div>
         <div class='panel-body'>
-            <p>
-                The following vehicles are due for deductible coverage activation. Use the form below to securely pay for another year of deductible coverage.
-            </p>
-            <br/>
-            <% if @policy.not_covered.count > 0 %>
-                <table id='vehicle_table' class='table'>
-                    <tr>
-                        <th>VIN</th>
-                        <th>Make</th>
-                        <th>Expires</th>
-                        <th>Deductible</th>
-                        <th>Coverage</th>
-                    </tr>
+            <% up_to_date = @policy.up_to_date? %>
+            <% if up_to_date %>
+                <p> All the vehicles within the policy <%= @policy.number %> currently have deductible coverage. No action required at this time. Thanks!</p>
+            <% else %>
+                <p>
+                    The following vehicles are due for deductible coverage activation. Use the form below to securely pay for another year of deductible coverage.
+                </p>
+                <br/>
+                <% if @policy.not_covered.count > 0 %>
+                    <table id='vehicle_table' class='table'>
+                        <tr>
+                            <th>VIN</th>
+                            <th>Make</th>
+                            <th>Expires</th>
+                            <th>Deductible</th>
+                            <th>Coverage</th>
+                        </tr>
 
-                    <%  @policy.not_covered.each do |v| %>
-                            <tr>
-                                <td><%= v.vin %></td>
-                                <td><%= v.make %></td>
-                                <td><%= v.expr_date ? v.expr_date : 'Not Activated' %>
-                                <td>$ <%= '%.2f' % v.deductible %></td>
-                                <td class='text-align-right'>$ <%= '%.2f' % (v.cost) %> </td>
-                            </tr>
-                    <% end %>
+                        <%  @policy.not_covered.each do |v| %>
+                                <tr>
+                                    <td><%= v.vin %></td>
+                                    <td><%= v.make %></td>
+                                    <td><%= v.expr_date ? v.expr_date : 'Not Activated' %>
+                                    <td>$ <%= '%.2f' % v.deductible %></td>
+                                    <td class='text-align-right'>$ <%= '%.2f' % (v.cost) %> </td>
+                                </tr>
+                        <% end %>
 
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>Total</td>
-                        <td>$ <%= '%.2f' % @policy.cost %></td>
-                    </tr>
-                </table>
-            <% end %>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>Total</td>
+                            <td>$ <%= '%.2f' % @policy.cost %></td>
+                        </tr>
+                    </table>
+                <% end %>
+          <% end %>
         </div>
     </div>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3>Billing Information</h3>
-        </div>
-        <div class="panel-body">
-            <div class='row'>
-                <div class='col-md-12'>
-                    <%= show_errors(@payment_info) %>
-                </div>
-            <div class='container'>
-                <div class='col-md-12'>
-                    <% if @payment_info.error %>
-                        <div clas="row">
-                              <div id="error_explanation" class='alert alert-danger'>
-                                <strong>Oh Snap!</strong> Change some things up and submit again.
-                                <ul>
-                                    <%= @payment_info.error %>
-                                </ul>
-                              </div>
-                        </div>
-                    <% end %>
-                </div>
+
+    <% if not up_to_date %>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3>Billing Information</h3>
             </div>
-                <%= form_for @payment_info , :url=>pay_path , :html=>{:class=>'form-horizontal'} ,:method=>'post' do |f| %>
-                    <div class='form-group'>
-                        <%= f.label :amount, "Amount $" , :class=>'col-md-2 control-label'%>
-                        <div class='col-md-4'>
-                            <%= f.text_field :amount,  :value=>'%.2f' % (@policy.cost + (@policy.cost * 0.08)), :readonly=>true, :class=>'form-control money'%>
-                        </div>
-                        <div class='col-md-2'>
-                            *Tax Included
-                         </div>
+            <div class="panel-body">
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <%= show_errors(@payment_info) %>
                     </div>
-                    <div class='form-group'>
-                        <%= f.label :first_name, 'First Name', :class=>'control-label col-md-2' %>
-                        <div class='col-md-4'>
-                            <%= f.text_field :first_name, :value=>@policy.first_name, :class=>'form-control' %>
-                        </div>
+                <div class='container'>
+                    <div class='col-md-12'>
+                        <% if @payment_info.error %>
+                            <div clas="row">
+                                  <div id="error_explanation" class='alert alert-danger'>
+                                    <strong>Oh Snap!</strong> Change some things up and submit again.
+                                    <ul>
+                                        <%= @payment_info.error %>
+                                    </ul>
+                                  </div>
+                            </div>
+                        <% end %>
                     </div>
-                    <div class='form-group'>
-                        <%= f.label :last_name , 'Last Name', :class=>'control-label col-md-2'%>
-                        <div class='col-md-4'>
-                            <%= f.text_field :last_name,  :value=>@policy.last_name, :class=>'form-control' %>
+                </div>
+                    <%= form_for @payment_info , :url=>pay_path , :html=>{:class=>'form-horizontal'} ,:method=>'post' do |f| %>
+                        <div class='form-group'>
+                            <%= f.label :amount, "Amount $" , :class=>'col-md-2 control-label'%>
+                            <div class='col-md-4'>
+                                <%= f.text_field :amount,  :value=>'%.2f' % (@policy.cost + (@policy.cost * 0.08)), :readonly=>true, :class=>'form-control money'%>
+                            </div>
+                            <div class='col-md-2'>
+                                *Tax Included
+                             </div>
                         </div>
-                    </div>
+                        <div class='form-group'>
+                            <%= f.label :first_name, 'First Name', :class=>'control-label col-md-2' %>
+                            <div class='col-md-4'>
+                                <%= f.text_field :first_name, :value=>@policy.first_name, :class=>'form-control' %>
+                            </div>
+                        </div>
+                        <div class='form-group'>
+                            <%= f.label :last_name , 'Last Name', :class=>'control-label col-md-2'%>
+                            <div class='col-md-4'>
+                                <%= f.text_field :last_name,  :value=>@policy.last_name, :class=>'form-control' %>
+                            </div>
+                        </div>
 
-                <div class='form-group'>
-                    <%= f.label :address , :class=>'control-label col-md-2'%>
-                    <div class='col-md-4'>
-                        <%= f.text_field :address, :value=>@policy.address, :class=>'form-control' %>
+                    <div class='form-group'>
+                        <%= f.label :address , :class=>'control-label col-md-2'%>
+                        <div class='col-md-4'>
+                            <%= f.text_field :address, :value=>@policy.address, :class=>'form-control' %>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :city, :class=>'control-label col-md-2' %>
-                    <div class='col-md-4'>
-                        <%= f.text_field :city, :value=>@policy.city, :class=>'form-control' %>
+                    <div class='form-group'>
+                        <%= f.label :city, :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= f.text_field :city, :value=>@policy.city, :class=>'form-control' %>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :state, :class=>'control-label col-md-2' %>
-                    <div class='col-md-4'>
-                        <%= f.text_field :state, :value=>@policy.state, :class=>'form-control' %>
+                    <div class='form-group'>
+                        <%= f.label :state, :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= f.text_field :state, :value=>@policy.state, :class=>'form-control' %>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :zip_code, 'Zip Code', :class=>'control-label col-md-2' %>
-                    <div class='col-md-4'>
-                        <%= f.text_field :zip_code , :value=>@policy.zip_code, :class=>'form-control' %>
+                    <div class='form-group'>
+                        <%= f.label :zip_code, 'Zip Code', :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= f.text_field :zip_code , :value=>@policy.zip_code, :class=>'form-control' %>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :card_type, 'Card Type', :class=>'control-label col-md-2' %>
-                    <div class='col-md-4'>
-                        <%= f.select :card_type, [['Visa', 'visa'], ['MasterCard', 'mastercard']], {},  {:class=>'form-control' }%>
+                    <div class='form-group'>
+                        <%= f.label :card_type, 'Card Type', :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= f.select :card_type, [['Visa', 'visa'], ['MasterCard', 'mastercard']], {},  {:class=>'form-control' }%>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :card_number , 'Card Number',  :class=>'control-label col-md-2'%>
-                    <div class='col-md-4'>
-                        <%= f.text_field :card_number, :class=>'form-control' %>
+                    <div class='form-group'>
+                        <%= f.label :card_number , 'Card Number',  :class=>'control-label col-md-2'%>
+                        <div class='col-md-4'>
+                            <%= f.text_field :card_number, :class=>'form-control' %>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :cvv2, 'CVV2', :class=>'control-label col-md-2' %>
-                    <div class='col-md-1'>
-                        <%= f.text_field :cvv2, :class=>'form-control'%>
+                    <div class='form-group'>
+                        <%= f.label :cvv2, 'CVV2', :class=>'control-label col-md-2' %>
+                        <div class='col-md-1'>
+                            <%= f.text_field :cvv2, :class=>'form-control'%>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :expr_month , :class=>'control-label col-md-2' %>
-                    <div class='col-md-4'>
-                        <%= select_month(Date.today, {:use_month_numbers=>true}, {:class=>'form-control', :id=>'payment_info_expr_month', :name=>'payment_info[expr_month]'}) %>
+                    <div class='form-group'>
+                        <%= f.label :expr_month , :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= select_month(Date.today, {:use_month_numbers=>true}, {:class=>'form-control', :id=>'payment_info_expr_month', :name=>'payment_info[expr_month]'}) %>
+                        </div>
                     </div>
-                </div>
-                <div class='form-group'>
-                    <%= f.label :expr_year , :class=>'control-label col-md-2' %>
-                    <div class='col-md-4'>
-                        <%= select_year(Date.today, {:end_year=>Date.today.year + 10}, {:class=>'form-control', :id=>'payment_info_expr_year', :name=>'payment_info[expr_year]'}) %>
+                    <div class='form-group'>
+                        <%= f.label :expr_year , :class=>'control-label col-md-2' %>
+                        <div class='col-md-4'>
+                            <%= select_year(Date.today, {:end_year=>Date.today.year + 10}, {:class=>'form-control', :id=>'payment_info_expr_year', :name=>'payment_info[expr_year]'}) %>
+                        </div>
                     </div>
-                </div>
-                <%= submit_tag 'Pay Now', :class=>'btn btn-default col-md-offset-2' %>
-                <%= link_to 'Cancel', :root , :data=>{:confirm=>'Are you sure you want to cancel this transaction?'} , :class=>'btn btn-default' %>
-                <% end %>
+                    <%= submit_tag 'Pay Now', :class=>'btn btn-default col-md-offset-2' %>
+                    <%= link_to 'Cancel', :root , :data=>{:confirm=>'Are you sure you want to cancel this transaction?'} , :class=>'btn btn-default' %>
+                    <% end %>
 
-        </div>
-        </div>
+            </div>
+            </div>
+        <% end %>
     </div>
 
 

@@ -24,6 +24,12 @@ class Policy < ActiveRecord::Base
         attributes['year'].blank
     }
 
+    #Returns true if all the vehicles within the policy are currently covered,
+    #else returns false
+    def up_to_date?
+        return not_covered.count > 0 ? false : true
+    end
+
     # Returns of a list of vehicles within the policy that
     # have expired coverage.
     def not_covered
