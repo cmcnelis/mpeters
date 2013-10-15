@@ -7,8 +7,8 @@
         </div>
         <div class='panel-body'>
             <%= form_for @vehicle, :url=>account_policy_vehicles_path do |f| %>
-            <%= show_errors(@vehicle) %>
-            <%= render :partial=>'form', :locals=>{:form=>f }%>
+                <%= show_errors(@vehicle) %>
+                <%= render :partial=>'form', :locals=>{:form=>f , :selectid=>'vehicle[year]'} %>
             <% end %>
         </div>
     </div>

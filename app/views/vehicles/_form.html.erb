@@ -1,4 +1,4 @@
- <%= render :partial=>'vehicles_mini', :locals=>{:form=>form} %>
+ <%= render :partial=>'vehicles_mini', :locals=>{:form=>form, :selectid=>selectid} %>
 <%= form.submit 'Submit', :class=>'btn btn-default' %>
 <%= link_to 'Cancel', :back, :class=>'btn btn-default', :confirm=>"Are you sure?" %>
 
