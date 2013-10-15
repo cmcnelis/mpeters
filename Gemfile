@@ -16,6 +16,9 @@ group :production do
     gem 'rails_12factor'
 end
 
+# Ruby version
+ruby '2.0.0'
+
 # Pay-Pal payment gem
 gem 'paypal-sdk-rest'
 
