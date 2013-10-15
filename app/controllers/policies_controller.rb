@@ -66,14 +66,16 @@ class PoliciesController < ApplicationController
         if @payment_info.valid?
             logger.debug("PolicyController::payment_info is valid.")
            @paypal = PayPalHelper.new(@payment_info, @policy)
-           @paypal.make_payment
 
-           render 'paypal_transactions/receipt'
-
+           if @paypal.make_payment
+                render 'paypal_transactions/receipt'
+           else
+                @payment_info.error = @paypal.error
+                render :action=>'pay'
+            end
         else
             render :action=>'pay'
         end
-
     end
 
     def notify

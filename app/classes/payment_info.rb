@@ -4,7 +4,7 @@ class PaymentInfo
     extend ActiveModel::Naming
 
     attr_accessor :first_name, :last_name, :address,
-    :city, :zip_code, :card_number, :cvv2, :card_type, :amount, :state, :expr_year, :expr_month
+    :city, :zip_code, :card_number, :cvv2, :card_type, :amount, :state, :expr_year, :expr_month, :error
 
     validates_presence_of :first_name
     validates_presence_of :last_name

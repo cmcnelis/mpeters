@@ -23,6 +23,11 @@ class PayPalHelper
             end
      end
 
+     # Retrieves the error hash for the process if one exists.
+     def error
+        @payment.error
+    end
+
 
      private
      # Bunch of helper methods that probably need to be factored out a
@@ -35,23 +40,25 @@ class PayPalHelper
         # We need to itemize the transaction for further record keeping possibly.
         # This could be rolled up into one transaction item, but figured the information
         # may come in useful later on.
-        items = Array.new
+        items = Array.new()
 
         @vehicles.each do |v|
-          items <<  {:name => 'Deductible Coverage',
+          items << Item.new(:name => 'Deductible Coverage',
                       :sku => v.vin,
-                      :price=> v.cost,
+                      :price=> '%.2f' % v.cost,
                       :currency=>"USD",
-                      :quantity=>1}
+                      :quantity=>1)
+          Rails.logger.debug "PaypalHelper::_build_transactions::items   #{items.inspect}"
         end
 
-
-        @transactions = {:item_list=>items,
+        @transactions = Array.new
+        @transactions[0] =
+          Transaction.new(:item_list=>ItemList.new(:items=>items),
                               :amount=>{
-                                :total=>@payment_info.amount,
-                                :currency=>"USD",
-                                :description=>'Deductible Saver Coverage Payment.'
-                                }}
+                                :total=>'%.2f' % @payment_info.amount,
+                                :currency=>"USD"
+                              },
+                              :description=>'Deductible Saver Coverage Payment.')
       end
 
       # Builds up the vehicle information hash for the transaction record.
@@ -104,24 +111,30 @@ class PayPalHelper
 
         @payment = Payment.new({
                 :intent => "sale",
+                :transactions => @transactions,
                 :payer => {
                     :payment_method => "credit_card",
-                    :funding_instruments => [{
-                    :credit_card => {
-                        :type => @payment_info.card_type,
-                        :number => @payment_info.card_number,
-                        :expire_month => @payment_info.expr_month,
-                        :expire_year => @payment_info.expr_year,
-                        :cvv2 => @payment_info.cvv2,
-                        :first_name => @payment_info.first_name,
-                        :last_name => @payment_info.last_name,
-                        :billing_address => {
-                          :line1 => @payment_info.address,
-                          :city => @payment_info.city,
-                          :state => @payment_info.state,
-                          :postal_code => @payment_info.zip_code,
-                          :country_code => "US" }}}]},
-                      :transactions => @transactions})
+                    :funding_instruments => [
+                      { :credit_card => {
+                          :type => @payment_info.card_type,
+                          :number => @payment_info.card_number,
+                          :expire_month => @payment_info.expr_month,
+                          :expire_year => @payment_info.expr_year,
+                          :cvv2 => @payment_info.cvv2,
+                          :first_name => @payment_info.first_name,
+                          :last_name => @payment_info.last_name,
+                          :billing_address => {
+                            :line1 => @payment_info.address,
+                            :city => @payment_info.city,
+                            :state => @payment_info.state,
+                            :postal_code => @payment_info.zip_code,
+                            :country_code => "US"
+                          }
+                        }
+                      }
+                    ]
+                }
+            })
       end
 
      def _make_payment
@@ -130,30 +143,30 @@ class PayPalHelper
 
           Rails.logger.debug "PaymentInfo>>>make_payment>> #{@payment.inspect}"
 
-        # Create Payment and return the status(true or false)
+        # Create Payment and return the status(true or false
         if @payment.create
-          Rails.logger.debug "PaymentInfo>>payment.create success : #{@payment.inspect}"
-          # @payment.id     # Payment Id
-          credit_card = @payment.payer.funding_instruments.first.credit_card
+            Rails.logger.debug "PaymentInfo>>payment.create success : #{@payment.inspect}"
+            # @payment.id     # Payment Id
+            credit_card = @payment.payer.funding_instruments.first.credit_card
 
-          Rails.logger.debug "PaymentInfo>> Creating Transaction..."
+            Rails.logger.debug "PaymentInfo>> Creating Transaction..."
 
-          # Record the payment for our local copy.
-          _build_paypal_transaction
+            # Record the payment for our local copy.
+            _build_paypal_transaction
 
-          if @transaction.status == PaypalTransaction::ACTIVE
-              @vehicles.each do |v|
-                  v.update!(:start_date=>Date.today,
-                    :expr_date=>Date.today + 1.year )
+              if @transaction.status == PaypalTransaction::ACTIVE
+                  @vehicles.each do |v|
+                      v.update!(:start_date=>Date.today,
+                        :expr_date=>Date.today + 1.year )
+                  end
               end
 
              Rails.logger.debug "PaymentInfo >> Transaction created...."
-             @transaction
+             true
           else
               Rails.logger.debug "PaymentInfo>>payment.create failure : #{@payment.error}"
-              @payment.error  # Error Hash
+              false
           end
-      end
 
     end # _make_payment
 

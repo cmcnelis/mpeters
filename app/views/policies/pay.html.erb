@@ -48,6 +48,19 @@
                 <div class='col-md-12'>
                     <%= show_errors(@payment_info) %>
                 </div>
+            <div class='container'>
+                <div class='col-md-12'>
+                    <% if @payment_info.error %>
+                        <div clas="row">
+                              <div id="error_explanation" class='alert alert-danger'>
+                                <strong>Oh Snap!</strong> Change some things up and submit again.
+                                <ul>
+                                    <%= @payment_info.error %>
+                                </ul>
+                              </div>
+                        </div>
+                    <% end %>
+                </div>
             </div>
                 <%= form_for @payment_info , :url=>pay_path , :html=>{:class=>'form-horizontal'} ,:method=>'post' do |f| %>
                     <div class='form-group'>
