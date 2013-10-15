@@ -8,7 +8,9 @@
         <div class='panel-body'>
             <%= form_for @vehicle, :url=>account_policy_vehicles_path do |f| %>
                 <%= show_errors(@vehicle) %>
-                <%= render :partial=>'form', :locals=>{:form=>f , :selectid=>'vehicle[year]'} %>
+                <%= render :partial=>'vehicles_mini', :locals=>{:form=>f , :selectid=>'vehicle[year]'} %>
+                <%= f.submit 'Submit', :class=>'btn btn-default' %>
+                <%= link_to 'Cancel', :back, :class=>'btn btn-default', :confirm=>"Are you sure?" %>
             <% end %>
         </div>
     </div>
