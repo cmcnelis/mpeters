@@ -14,7 +14,9 @@ vehicles = Vehicle.create!([
         :color=>"Black",
         :deductible=>"500",
         :previous_deductible=>"500",
-        :drivers=>'John Doe, Jane Doe'},
+        :drivers=>'John Doe, Jane Doe',
+        :year=>"2013"
+    },
 
     {
         :vin=>"B1234567890123456",
@@ -23,7 +25,9 @@ vehicles = Vehicle.create!([
         :color=>'Blue',
         :deductible=>'500',
         :previous_deductible=>'500',
-        :drivers=>'John Doe, Jane Doe'
+        :drivers=>'John Doe, Jane Doe',
+        :year=>'2011'
+
 
     }
 ]) #end vehicle.create
