@@ -1,29 +1,30 @@
 <%if @agent.policies %>
-<div class='table-responsive'>
-<table class="table table-striped table-condensed">
-    <tr>
-        <th>Policy</th>
-        <th>Holder</th>
-        <th>Vehicles</th>
-        <th>Status</th>
-    </tr>
-    <% @agent.policies.each do |p| %>
-    <tr>
-        <td><%= link_to raw("<i class='glyphicon glyphicon-remove'></i>"), account_policy_path(p.id),
-                :method=>:delete, :data=>{:confirm=>"Are you sure you want to remove this policy?"}%>  <%= link_to p.number, account_policy_path(p.id) %></td>
-        <td><%= p.last_name %></td>
-        <td><%= p.vehicles.count %></td>
-        <% if p.not_covered.count > 0 %>
-            <td>Needs Attention </td>
-        <% else %>
-            <td>OK</td>
-        <% end %>
-    </tr>
-    <% end %>
-</table>
-</div>
+    <div class='table-responsive'>
+        <table class="table table-striped table-condensed">
+            <tr>
+                <th>Policy</th>
+                <th>Holder</th>
+                <th>Vehicles</th>
+                <th>Status</th>
+            </tr>
+            <% @agent.policies.each do |p| %>
+            <tr>
+                <td><%= link_to raw("<i class='glyphicon glyphicon-remove red'></i>") , account_policy_path(p.id),
+                        :method=>:delete, :data=>{:confirm=>"Are you sure you want to remove this policy?"}%>
+                        <%= link_to p.number, account_policy_path(p.id) %></td>
+                <td><%= p.last_name %></td>
+                <td><%= p.vehicles.count %></td>
+                <% if p.not_covered.count > 0 %>
+                    <td>Needs Attention </td>
+                <% else %>
+                    <td>OK</td>
+                <% end %>
+            </tr>
+            <% end %>
+        </table>
+    </div>
 <% else %>
-<p>You don't have any policies at this time.</p>
+    <p>You don't have any policies at this time.</p>
 <% end %>
 
 
