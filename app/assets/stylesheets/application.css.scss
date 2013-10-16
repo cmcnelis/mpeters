@@ -8,12 +8,11 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap
  *= require_self
  *= require_tree .
  */
 /* Move down content because we have a fixed navbar that is 50px tall */
-body {
+/*body {
   padding-top: 80px;
   padding-bottom: 70px;
 }
@@ -28,4 +27,10 @@ body {
 }
 
 
-.field_with_errors { display: inline; }
+.field_with_errors { display: inline; }*/
+
+/*// change colors
+$link-color: red;*/
+
+// import original bootstrap
+@import "twitter/bootstrap";

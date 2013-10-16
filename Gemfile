@@ -19,6 +19,10 @@ end
 # Ruby version
 ruby '2.0.0'
 
+
+# Bootstrap
+gem 'anjlab-bootstrap-rails', '~> 3.0.0.3', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
 # Pay-Pal payment gem
 gem 'paypal-sdk-rest'
 
