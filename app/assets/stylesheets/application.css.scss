@@ -12,25 +12,17 @@
  *= require_tree .
  */
 /* Move down content because we have a fixed navbar that is 50px tall */
-/*body {
+body {
   padding-top: 80px;
   padding-bottom: 70px;
 }
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('glyphicons-halflings-regular.eot');
-  src: url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-  url('glyphicons-halflings-regular.woff') format('woff'),
-  url('glyphicons-halflings-regular.ttf') format('truetype'),
-  url('glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+.field_with_errors {
+    display: inline;
 }
 
-
-.field_with_errors { display: inline; }*/
-
-/*// change colors
-$link-color: red;*/
+// change colors
+//$link-color: red;
 
 // import original bootstrap
 @import "twitter/bootstrap";
