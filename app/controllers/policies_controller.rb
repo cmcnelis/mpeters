@@ -10,10 +10,8 @@ class PoliciesController < ApplicationController
     def create
         @agent = current_user
         @policy = @agent.policies.build(policy_params)
-        if @policy.valid?
-            if @policy.save
+        if @policy.save
                 flash[:notice] = "Sucessfully created new policy."
-                logger.debug "Policy Errors.. #{@policy.errors.inspect}"
                 # This is where it gets wierd. We need to send out and email
                 # if  we have vehicles since the policy doesn't contain any information
                 # to build a payment transaction off of.
@@ -24,7 +22,6 @@ class PoliciesController < ApplicationController
                     ClientMailer.notify_policy(@policy, request).deliver
                 end
                 redirect_to account_url
-            end
         else
             render :action => 'new'
         end

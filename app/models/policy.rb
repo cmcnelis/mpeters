@@ -11,7 +11,7 @@ class Policy < ActiveRecord::Base
     validates :email, :presence=>true, :confirmation=>true
     validates :email_confirmation, :presence=>true
 
-    validates_associated :vehicles
+
 
     belongs_to :agent
     has_many :vehicles, dependent: :destroy
@@ -23,8 +23,10 @@ class Policy < ActiveRecord::Base
             attributes['model'].blank? and
             attributes['color'].blank?  and
             attributes['deductible'].blank? and
-            attributes['year'].blank? }
+            attributes['drivers'].blank?
+        }
 
+    validates_associated :vehicles
 
     #Returns true if all the vehicles within the policy are currently covered,
     #else returns false
