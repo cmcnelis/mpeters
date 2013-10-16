@@ -17,7 +17,7 @@ class AgentSessionsController < ApplicationController
 
   def destroy
     current_user_session.destroy
-    redirect_back_or_default :root
+    redirect_to :root
   end
 
 end

@@ -11,7 +11,6 @@ class PoliciesController < ApplicationController
         @agent = current_user
         @policy = @agent.policies.build(policy_params)
         if @policy.save
-                flash[:notice] = "Sucessfully created new policy."
                 # This is where it gets wierd. We need to send out and email
                 # if  we have vehicles since the policy doesn't contain any information
                 # to build a payment transaction off of.
@@ -38,7 +37,6 @@ class PoliciesController < ApplicationController
     def update
         @policy = Policy.find(params[:id])
         if @policy.update(policy_params)
-            flash[:notice] = "Successfully updated policy  information."
             render :action=>'show'
         else
             render :action =>'edit'
@@ -47,9 +45,8 @@ class PoliciesController < ApplicationController
 
     def destroy
         @policy = Policy.find(params[:id])
-        if(@policy.destroy)
-            flash[:notice] = "Successfully removed policy."
-        end
+        @policy.destroy
+
         redirect_to account_url
     end
 
